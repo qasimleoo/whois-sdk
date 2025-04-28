@@ -24,7 +24,7 @@ class WhoisClient:
         return self._raw_client
 
     def get_whois(
-        self, *, api_key: str, whois: str, domain_name: str, request_options: typing.Optional[RequestOptions] = None
+        self, *, api_key: str, domain_name: str, whois: str, request_options: typing.Optional[RequestOptions] = None
     ) -> LiveWhoisResponse:
         """
         Get WHOIS information for a domain
@@ -33,9 +33,9 @@ class WhoisClient:
         ----------
         api_key : str
 
-        whois : str
-
         domain_name : str
+
+        whois : str
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -49,10 +49,10 @@ class WhoisClient:
         from whoisfreaks import WhoisfreaksApi
         from whoisfreaks.environment import WhoisfreaksApiEnvironment
         client = WhoisfreaksApi(environment=WhoisfreaksApiEnvironment.PRODUCTION, )
-        client.whois.get_whois(api_key='YOUR_API_KEY', whois='live', domain_name='888starzci.ci', )
+        client.whois.get_whois(whois='live', api_key='YOUR_API_KEY', domain_name='888starzci.ci', )
         """
         _response = self._raw_client.get_whois(
-            api_key=api_key, whois=whois, domain_name=domain_name, request_options=request_options
+            api_key=api_key, domain_name=domain_name, whois=whois, request_options=request_options
         )
         return _response.data
 
@@ -73,7 +73,7 @@ class AsyncWhoisClient:
         return self._raw_client
 
     async def get_whois(
-        self, *, api_key: str, whois: str, domain_name: str, request_options: typing.Optional[RequestOptions] = None
+        self, *, api_key: str, domain_name: str, whois: str, request_options: typing.Optional[RequestOptions] = None
     ) -> LiveWhoisResponse:
         """
         Get WHOIS information for a domain
@@ -82,9 +82,9 @@ class AsyncWhoisClient:
         ----------
         api_key : str
 
-        whois : str
-
         domain_name : str
+
+        whois : str
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -100,10 +100,10 @@ class AsyncWhoisClient:
         import asyncio
         client = AsyncWhoisfreaksApi(environment=WhoisfreaksApiEnvironment.PRODUCTION, )
         async def main() -> None:
-            await client.whois.get_whois(api_key='YOUR_API_KEY', whois='live', domain_name='888starzci.ci', )
+            await client.whois.get_whois(whois='live', api_key='YOUR_API_KEY', domain_name='888starzci.ci', )
         asyncio.run(main())
         """
         _response = await self._raw_client.get_whois(
-            api_key=api_key, whois=whois, domain_name=domain_name, request_options=request_options
+            api_key=api_key, domain_name=domain_name, whois=whois, request_options=request_options
         )
         return _response.data

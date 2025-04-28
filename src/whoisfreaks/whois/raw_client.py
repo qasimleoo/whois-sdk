@@ -16,7 +16,7 @@ class RawWhoisClient:
         self._client_wrapper = client_wrapper
 
     def get_whois(
-        self, *, api_key: str, whois: str, domain_name: str, request_options: typing.Optional[RequestOptions] = None
+        self, *, api_key: str, domain_name: str, whois: str, request_options: typing.Optional[RequestOptions] = None
     ) -> HttpResponse[LiveWhoisResponse]:
         """
         Get WHOIS information for a domain
@@ -25,9 +25,9 @@ class RawWhoisClient:
         ----------
         api_key : str
 
-        whois : str
-
         domain_name : str
+
+        whois : str
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -41,8 +41,10 @@ class RawWhoisClient:
             method="GET",
             params={
                 "apiKey": api_key,
-                "whois": whois,
                 "domainName": domain_name,
+            },
+            headers={
+                "whois": str(whois) if whois is not None else None,
             },
             request_options=request_options,
         )
@@ -67,7 +69,7 @@ class AsyncRawWhoisClient:
         self._client_wrapper = client_wrapper
 
     async def get_whois(
-        self, *, api_key: str, whois: str, domain_name: str, request_options: typing.Optional[RequestOptions] = None
+        self, *, api_key: str, domain_name: str, whois: str, request_options: typing.Optional[RequestOptions] = None
     ) -> AsyncHttpResponse[LiveWhoisResponse]:
         """
         Get WHOIS information for a domain
@@ -76,9 +78,9 @@ class AsyncRawWhoisClient:
         ----------
         api_key : str
 
-        whois : str
-
         domain_name : str
+
+        whois : str
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -92,8 +94,10 @@ class AsyncRawWhoisClient:
             method="GET",
             params={
                 "apiKey": api_key,
-                "whois": whois,
                 "domainName": domain_name,
+            },
+            headers={
+                "whois": str(whois) if whois is not None else None,
             },
             request_options=request_options,
         )

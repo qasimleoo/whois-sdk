@@ -23,7 +23,7 @@ Instantiate and use the client with the following:
 from whoisfreaks import WhoisfreaksApi
 from whoisfreaks.environment import WhoisfreaksApiEnvironment
 client = WhoisfreaksApi(environment=WhoisfreaksApiEnvironment.PRODUCTION, )
-client.whois.get_whois(api_key='YOUR_API_KEY', whois='live', domain_name='888starzci.ci', )
+client.whois.get_whois(whois='live', api_key='YOUR_API_KEY', domain_name='888starzci.ci', )
 ```
 
 ## Async Client
@@ -36,7 +36,7 @@ from whoisfreaks.environment import WhoisfreaksApiEnvironment
 import asyncio
 client = AsyncWhoisfreaksApi(environment=WhoisfreaksApiEnvironment.PRODUCTION, )
 async def main() -> None:
-    await client.whois.get_whois(api_key='YOUR_API_KEY', whois='live', domain_name='888starzci.ci', )
+    await client.whois.get_whois(whois='live', api_key='YOUR_API_KEY', domain_name='888starzci.ci', )
 asyncio.run(main())```
 
 ## Exception Handling

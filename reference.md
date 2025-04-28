@@ -30,7 +30,7 @@ Get WHOIS information for a domain
 from whoisfreaks import WhoisfreaksApi
 from whoisfreaks.environment import WhoisfreaksApiEnvironment
 client = WhoisfreaksApi(environment=WhoisfreaksApiEnvironment.PRODUCTION, )
-client.whois.get_whois(api_key='YOUR_API_KEY', whois='live', domain_name='888starzci.ci', )
+client.whois.get_whois(whois='live', api_key='YOUR_API_KEY', domain_name='888starzci.ci', )
 
 ```
 </dd>
@@ -54,7 +54,7 @@ client.whois.get_whois(api_key='YOUR_API_KEY', whois='live', domain_name='888sta
 <dl>
 <dd>
 
-**whois:** `str` 
+**domain_name:** `str` 
     
 </dd>
 </dl>
@@ -62,7 +62,7 @@ client.whois.get_whois(api_key='YOUR_API_KEY', whois='live', domain_name='888sta
 <dl>
 <dd>
 
-**domain_name:** `str` 
+**whois:** `str` 
     
 </dd>
 </dl>

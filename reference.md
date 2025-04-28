@@ -15,7 +15,7 @@
 Get WHOIS information for a domain. Supports three query types:
 - Live WHOIS: Get current domain registration information
 - Historical WHOIS: Get historical registration records for a domain
-- Reverse WHOIS: Search domains by registrant information
+- Reverse WHOIS: Search domains by registrant, keyword, email or company information
 </dd>
 </dl>
 </dd>
@@ -33,7 +33,7 @@ Get WHOIS information for a domain. Supports three query types:
 from whoisfreaks import WhoisfreaksApi
 from whoisfreaks.environment import WhoisfreaksApiEnvironment
 client = WhoisfreaksApi(environment=WhoisfreaksApiEnvironment.PRODUCTION, )
-client.whois.get_whois(api_key='YOUR_API_KEY', domain_name='whoisfreaks.com', whois='reverse', keyword='google', email='google@gmail.com', owner='markmonitor', company='google', mode='mini', exact='true', format='xml', includes='billing', page='3', )
+client.whois.get_whois(api_key='YOUR_API_KEY', whois='reverse', keyword='google', email='google@gmail.com', owner='markmonitor', company='google', mode='mini', exact='true', format='xml', includes='billing', page='3', )
 
 ```
 </dd>

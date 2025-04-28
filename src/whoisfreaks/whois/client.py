@@ -44,7 +44,7 @@ class WhoisClient:
         Get WHOIS information for a domain. Supports three query types:
         - Live WHOIS: Get current domain registration information
         - Historical WHOIS: Get historical registration records for a domain
-        - Reverse WHOIS: Search domains by registrant information
+        - Reverse WHOIS: Search domains by registrant, keyword, email or company information
 
         Parameters
         ----------
@@ -140,7 +140,7 @@ class AsyncWhoisClient:
         Get WHOIS information for a domain. Supports three query types:
         - Live WHOIS: Get current domain registration information
         - Historical WHOIS: Get historical registration records for a domain
-        - Reverse WHOIS: Search domains by registrant information
+        - Reverse WHOIS: Search domains by registrant, keyword, email or company information
 
         Parameters
         ----------

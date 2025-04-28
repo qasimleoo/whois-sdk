@@ -8,6 +8,7 @@ from ..core.client_wrapper import AsyncClientWrapper, SyncClientWrapper
 from ..core.http_response import AsyncHttpResponse, HttpResponse
 from ..core.pydantic_utilities import parse_obj_as
 from ..core.request_options import RequestOptions
+from .types.ip_whois_response import IpWhoisResponse
 from .types.whois_response import WhoisResponse
 
 
@@ -102,6 +103,57 @@ class RawWhoisClient:
             raise ApiError(headers=dict(_response.headers), status_code=_response.status_code, body=_response.text)
         raise ApiError(headers=dict(_response.headers), status_code=_response.status_code, body=_response_json)
 
+    def get_ip_whois(
+        self,
+        *,
+        api_key: str,
+        ip: str,
+        format: typing.Optional[str] = None,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> HttpResponse[IpWhoisResponse]:
+        """
+        Get WHOIS information for an IP
+
+        Parameters
+        ----------
+        api_key : str
+
+        ip : str
+
+        format : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        HttpResponse[IpWhoisResponse]
+        """
+        _response = self._client_wrapper.httpx_client.request(
+            "ip-whois",
+            method="GET",
+            params={
+                "apiKey": api_key,
+                "ip": ip,
+                "format": format,
+            },
+            request_options=request_options,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    IpWhoisResponse,
+                    parse_obj_as(
+                        type_=IpWhoisResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return HttpResponse(response=_response, data=_data)
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(headers=dict(_response.headers), status_code=_response.status_code, body=_response.text)
+        raise ApiError(headers=dict(_response.headers), status_code=_response.status_code, body=_response_json)
+
 
 class AsyncRawWhoisClient:
     def __init__(self, *, client_wrapper: AsyncClientWrapper):
@@ -185,6 +237,57 @@ class AsyncRawWhoisClient:
                     WhoisResponse,
                     parse_obj_as(
                         type_=WhoisResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return AsyncHttpResponse(response=_response, data=_data)
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(headers=dict(_response.headers), status_code=_response.status_code, body=_response.text)
+        raise ApiError(headers=dict(_response.headers), status_code=_response.status_code, body=_response_json)
+
+    async def get_ip_whois(
+        self,
+        *,
+        api_key: str,
+        ip: str,
+        format: typing.Optional[str] = None,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> AsyncHttpResponse[IpWhoisResponse]:
+        """
+        Get WHOIS information for an IP
+
+        Parameters
+        ----------
+        api_key : str
+
+        ip : str
+
+        format : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        AsyncHttpResponse[IpWhoisResponse]
+        """
+        _response = await self._client_wrapper.httpx_client.request(
+            "ip-whois",
+            method="GET",
+            params={
+                "apiKey": api_key,
+                "ip": ip,
+                "format": format,
+            },
+            request_options=request_options,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    IpWhoisResponse,
+                    parse_obj_as(
+                        type_=IpWhoisResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )

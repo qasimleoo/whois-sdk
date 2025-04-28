@@ -5,6 +5,7 @@ import typing
 from ..core.client_wrapper import AsyncClientWrapper, SyncClientWrapper
 from ..core.request_options import RequestOptions
 from .raw_client import AsyncRawWhoisClient, RawWhoisClient
+from .types.ip_whois_response import IpWhoisResponse
 from .types.whois_response import WhoisResponse
 
 
@@ -97,6 +98,44 @@ class WhoisClient:
             includes=includes,
             page=page,
             request_options=request_options,
+        )
+        return _response.data
+
+    def get_ip_whois(
+        self,
+        *,
+        api_key: str,
+        ip: str,
+        format: typing.Optional[str] = None,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> IpWhoisResponse:
+        """
+        Get WHOIS information for an IP
+
+        Parameters
+        ----------
+        api_key : str
+
+        ip : str
+
+        format : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        IpWhoisResponse
+
+        Examples
+        --------
+        from whoisfreaks import WhoisfreaksApi
+        from whoisfreaks.environment import WhoisfreaksApiEnvironment
+        client = WhoisfreaksApi(environment=WhoisfreaksApiEnvironment.PRODUCTION, )
+        client.whois.get_ip_whois(api_key='YOUR_API_KEY', ip='8.8.8.8', )
+        """
+        _response = self._raw_client.get_ip_whois(
+            api_key=api_key, ip=ip, format=format, request_options=request_options
         )
         return _response.data
 
@@ -193,5 +232,46 @@ class AsyncWhoisClient:
             includes=includes,
             page=page,
             request_options=request_options,
+        )
+        return _response.data
+
+    async def get_ip_whois(
+        self,
+        *,
+        api_key: str,
+        ip: str,
+        format: typing.Optional[str] = None,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> IpWhoisResponse:
+        """
+        Get WHOIS information for an IP
+
+        Parameters
+        ----------
+        api_key : str
+
+        ip : str
+
+        format : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        IpWhoisResponse
+
+        Examples
+        --------
+        from whoisfreaks import AsyncWhoisfreaksApi
+        from whoisfreaks.environment import WhoisfreaksApiEnvironment
+        import asyncio
+        client = AsyncWhoisfreaksApi(environment=WhoisfreaksApiEnvironment.PRODUCTION, )
+        async def main() -> None:
+            await client.whois.get_ip_whois(api_key='YOUR_API_KEY', ip='8.8.8.8', )
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.get_ip_whois(
+            api_key=api_key, ip=ip, format=format, request_options=request_options
         )
         return _response.data

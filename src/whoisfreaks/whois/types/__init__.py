@@ -5,6 +5,10 @@
 from .contact import Contact
 from .domain_registrar import DomainRegistrar
 from .historical_record import HistoricalRecord
+from .inet_num import InetNum
+from .ip_contact import IpContact
+from .ip_whois_response import IpWhoisResponse
+from .organization import Organization
 from .registry_data import RegistryData
 from .reseller_contact import ResellerContact
 from .status import Status
@@ -14,6 +18,10 @@ __all__ = [
     "Contact",
     "DomainRegistrar",
     "HistoricalRecord",
+    "InetNum",
+    "IpContact",
+    "IpWhoisResponse",
+    "Organization",
     "RegistryData",
     "ResellerContact",
     "Status",

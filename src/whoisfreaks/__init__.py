@@ -6,13 +6,29 @@ from . import whois
 from .client import AsyncWhoisfreaksApi, WhoisfreaksApi
 from .environment import WhoisfreaksApiEnvironment
 from .version import __version__
-from .whois import Contact, DomainRegistrar, HistoricalRecord, RegistryData, ResellerContact, Status, WhoisResponse
+from .whois import (
+    Contact,
+    DomainRegistrar,
+    HistoricalRecord,
+    InetNum,
+    IpContact,
+    IpWhoisResponse,
+    Organization,
+    RegistryData,
+    ResellerContact,
+    Status,
+    WhoisResponse,
+)
 
 __all__ = [
     "AsyncWhoisfreaksApi",
     "Contact",
     "DomainRegistrar",
     "HistoricalRecord",
+    "InetNum",
+    "IpContact",
+    "IpWhoisResponse",
+    "Organization",
     "RegistryData",
     "ResellerContact",
     "Status",

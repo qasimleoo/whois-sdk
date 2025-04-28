@@ -47,7 +47,7 @@ will be thrown.
 ```python
 from whoisfreaks.core.api_error import ApiError
 try:
-    client.whois.get_whois()
+    client.whois.get_whois(...)
 except ApiError as e:
     print(e.status_code)
     print(e.body)
@@ -63,7 +63,7 @@ The `.with_raw_response` property returns a "raw" client that can be used to acc
 ```python
 from whoisfreaks import WhoisfreaksApi
 client = WhoisfreaksApi(..., )
-response = client.whois.with_raw_response.get_whois()
+response = client.whois.with_raw_response.get_whois(...)
 print(response.headers)  # access the response headers
 print(response.data)  # access the underlying object
 ```
@@ -83,7 +83,7 @@ A request is deemed retryable when any of the following HTTP status codes is ret
 Use the `max_retries` request option to configure this behavior.
 
 ```python
-client.whois.get_whois(request_options={
+client.whois.get_whois(..., request_options={
     "max_retries": 1
 })
 ```
@@ -98,7 +98,7 @@ from whoisfreaks import WhoisfreaksApi
 client = WhoisfreaksApi(..., timeout=20.0, )
 
 # Override timeout for a specific method
-client.whois.get_whois(request_options={
+client.whois.get_whois(..., request_options={
     "timeout_in_seconds": 1
 })
 ```

@@ -5,7 +5,7 @@ import typing
 from ..core.client_wrapper import AsyncClientWrapper, SyncClientWrapper
 from ..core.request_options import RequestOptions
 from .raw_client import AsyncRawWhoisClient, RawWhoisClient
-from .types.whois_response import WhoisResponse
+from .types.live_whois_response import LiveWhoisResponse
 
 
 class WhoisClient:
@@ -25,7 +25,7 @@ class WhoisClient:
 
     def get_whois(
         self, *, api_key: str, whois: str, domain_name: str, request_options: typing.Optional[RequestOptions] = None
-    ) -> WhoisResponse:
+    ) -> LiveWhoisResponse:
         """
         Get WHOIS information for a domain
 
@@ -42,7 +42,7 @@ class WhoisClient:
 
         Returns
         -------
-        WhoisResponse
+        LiveWhoisResponse
 
         Examples
         --------
@@ -73,7 +73,7 @@ class AsyncWhoisClient:
 
     async def get_whois(
         self, *, api_key: str, whois: str, domain_name: str, request_options: typing.Optional[RequestOptions] = None
-    ) -> WhoisResponse:
+    ) -> LiveWhoisResponse:
         """
         Get WHOIS information for a domain
 
@@ -90,7 +90,7 @@ class AsyncWhoisClient:
 
         Returns
         -------
-        WhoisResponse
+        LiveWhoisResponse
 
         Examples
         --------

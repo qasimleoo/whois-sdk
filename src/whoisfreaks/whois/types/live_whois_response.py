@@ -9,9 +9,10 @@ from ...core.serialization import FieldMetadata
 from .contact import Contact
 from .domain_registrar import DomainRegistrar
 from .registry_data import RegistryData
+from .reseller_contact import ResellerContact
 
 
-class WhoisResponse(UniversalBaseModel):
+class LiveWhoisResponse(UniversalBaseModel):
     status: bool
     domain_name: str
     query_time: typing.Optional[str] = None
@@ -21,9 +22,11 @@ class WhoisResponse(UniversalBaseModel):
     update_date: typing.Optional[str] = None
     expiry_date: typing.Optional[str] = None
     domain_registrar: typing.Optional[DomainRegistrar] = None
+    reseller_contact: typing.Optional[ResellerContact] = None
     registrant_contact: typing.Optional[Contact] = None
     administrative_contact: typing.Optional[Contact] = None
     technical_contact: typing.Optional[Contact] = None
+    billing_contact: typing.Optional[Contact] = None
     name_servers: typing.Optional[typing.List[str]] = None
     domain_status: typing.Optional[typing.List[str]] = None
     whois_raw_domain: typing.Optional[str] = None

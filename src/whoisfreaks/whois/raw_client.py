@@ -8,7 +8,7 @@ from ..core.client_wrapper import AsyncClientWrapper, SyncClientWrapper
 from ..core.http_response import AsyncHttpResponse, HttpResponse
 from ..core.pydantic_utilities import parse_obj_as
 from ..core.request_options import RequestOptions
-from .types.whois_response import WhoisResponse
+from .types.live_whois_response import LiveWhoisResponse
 
 
 class RawWhoisClient:
@@ -17,7 +17,7 @@ class RawWhoisClient:
 
     def get_whois(
         self, *, api_key: str, whois: str, domain_name: str, request_options: typing.Optional[RequestOptions] = None
-    ) -> HttpResponse[WhoisResponse]:
+    ) -> HttpResponse[LiveWhoisResponse]:
         """
         Get WHOIS information for a domain
 
@@ -34,7 +34,7 @@ class RawWhoisClient:
 
         Returns
         -------
-        HttpResponse[WhoisResponse]
+        HttpResponse[LiveWhoisResponse]
         """
         _response = self._client_wrapper.httpx_client.request(
             "whois",
@@ -49,9 +49,9 @@ class RawWhoisClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    WhoisResponse,
+                    LiveWhoisResponse,
                     parse_obj_as(
-                        type_=WhoisResponse,  # type: ignore
+                        type_=LiveWhoisResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -68,7 +68,7 @@ class AsyncRawWhoisClient:
 
     async def get_whois(
         self, *, api_key: str, whois: str, domain_name: str, request_options: typing.Optional[RequestOptions] = None
-    ) -> AsyncHttpResponse[WhoisResponse]:
+    ) -> AsyncHttpResponse[LiveWhoisResponse]:
         """
         Get WHOIS information for a domain
 
@@ -85,7 +85,7 @@ class AsyncRawWhoisClient:
 
         Returns
         -------
-        AsyncHttpResponse[WhoisResponse]
+        AsyncHttpResponse[LiveWhoisResponse]
         """
         _response = await self._client_wrapper.httpx_client.request(
             "whois",
@@ -100,9 +100,9 @@ class AsyncRawWhoisClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    WhoisResponse,
+                    LiveWhoisResponse,
                     parse_obj_as(
-                        type_=WhoisResponse,  # type: ignore
+                        type_=LiveWhoisResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )

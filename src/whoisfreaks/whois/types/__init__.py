@@ -4,7 +4,8 @@
 
 from .contact import Contact
 from .domain_registrar import DomainRegistrar
+from .live_whois_response import LiveWhoisResponse
 from .registry_data import RegistryData
-from .whois_response import WhoisResponse
+from .reseller_contact import ResellerContact
 
-__all__ = ["Contact", "DomainRegistrar", "RegistryData", "WhoisResponse"]
+__all__ = ["Contact", "DomainRegistrar", "LiveWhoisResponse", "RegistryData", "ResellerContact"]

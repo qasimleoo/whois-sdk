@@ -2,22 +2,6 @@
 
 # isort: skip_file
 
-from .types import (
-    Contact,
-    DomainRegistrar,
-    HistoricalRecord,
-    HistoricalWhoisResponse,
-    LiveWhoisResponse,
-    RegistryData,
-    ResellerContact,
-)
+from .types import Contact, DomainRegistrar, HistoricalRecord, RegistryData, ResellerContact, WhoisResponse
 
-__all__ = [
-    "Contact",
-    "DomainRegistrar",
-    "HistoricalRecord",
-    "HistoricalWhoisResponse",
-    "LiveWhoisResponse",
-    "RegistryData",
-    "ResellerContact",
-]
+__all__ = ["Contact", "DomainRegistrar", "HistoricalRecord", "RegistryData", "ResellerContact", "WhoisResponse"]

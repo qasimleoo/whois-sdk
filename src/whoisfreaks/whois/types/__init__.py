@@ -5,17 +5,8 @@
 from .contact import Contact
 from .domain_registrar import DomainRegistrar
 from .historical_record import HistoricalRecord
-from .historical_whois_response import HistoricalWhoisResponse
-from .live_whois_response import LiveWhoisResponse
 from .registry_data import RegistryData
 from .reseller_contact import ResellerContact
+from .whois_response import WhoisResponse
 
-__all__ = [
-    "Contact",
-    "DomainRegistrar",
-    "HistoricalRecord",
-    "HistoricalWhoisResponse",
-    "LiveWhoisResponse",
-    "RegistryData",
-    "ResellerContact",
-]
+__all__ = ["Contact", "DomainRegistrar", "HistoricalRecord", "RegistryData", "ResellerContact", "WhoisResponse"]

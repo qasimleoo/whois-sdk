@@ -8,13 +8,14 @@ from ...core.pydantic_utilities import IS_PYDANTIC_V2, UniversalBaseModel
 from ...core.serialization import FieldMetadata
 from .contact import Contact
 from .domain_registrar import DomainRegistrar
+from .historical_record import HistoricalRecord
 from .registry_data import RegistryData
 from .reseller_contact import ResellerContact
 
 
-class LiveWhoisResponse(UniversalBaseModel):
+class WhoisResponse(UniversalBaseModel):
     status: bool
-    domain_name: str
+    domain_name: typing.Optional[str] = None
     query_time: typing.Optional[str] = None
     whois_server: typing.Optional[str] = None
     domain_registered: typing.Optional[str] = None
@@ -32,6 +33,9 @@ class LiveWhoisResponse(UniversalBaseModel):
     whois_raw_domain: typing.Optional[str] = None
     registry_data: typing.Optional[RegistryData] = None
     raw_response: typing_extensions.Annotated[typing.Optional[str], FieldMetadata(alias="rawResponse")] = None
+    whois: typing.Optional[str] = None
+    total_records: typing.Optional[str] = None
+    whois_domains_historical: typing.Optional[typing.List[HistoricalRecord]] = None
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

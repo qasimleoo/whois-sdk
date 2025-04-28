@@ -8,19 +8,18 @@ from ..core.client_wrapper import AsyncClientWrapper, SyncClientWrapper
 from ..core.http_response import AsyncHttpResponse, HttpResponse
 from ..core.pydantic_utilities import parse_obj_as
 from ..core.request_options import RequestOptions
-from .types.historical_whois_response import HistoricalWhoisResponse
-from .types.live_whois_response import LiveWhoisResponse
+from .types.whois_response import WhoisResponse
 
 
 class RawWhoisClient:
     def __init__(self, *, client_wrapper: SyncClientWrapper):
         self._client_wrapper = client_wrapper
 
-    def get_live_whois(
+    def get_whois(
         self, *, api_key: str, domain_name: str, whois: str, request_options: typing.Optional[RequestOptions] = None
-    ) -> HttpResponse[LiveWhoisResponse]:
+    ) -> HttpResponse[WhoisResponse]:
         """
-        Get WHOIS information for a domain
+        Get WHOIS information for a domain (live or historical)
 
         Parameters
         ----------
@@ -35,7 +34,7 @@ class RawWhoisClient:
 
         Returns
         -------
-        HttpResponse[LiveWhoisResponse]
+        HttpResponse[WhoisResponse]
         """
         _response = self._client_wrapper.httpx_client.request(
             "",
@@ -43,66 +42,16 @@ class RawWhoisClient:
             params={
                 "apiKey": api_key,
                 "domainName": domain_name,
-            },
-            headers={
-                "whois": str(whois) if whois is not None else None,
+                "whois": whois,
             },
             request_options=request_options,
         )
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    LiveWhoisResponse,
+                    WhoisResponse,
                     parse_obj_as(
-                        type_=LiveWhoisResponse,  # type: ignore
-                        object_=_response.json(),
-                    ),
-                )
-                return HttpResponse(response=_response, data=_data)
-            _response_json = _response.json()
-        except JSONDecodeError:
-            raise ApiError(headers=dict(_response.headers), status_code=_response.status_code, body=_response.text)
-        raise ApiError(headers=dict(_response.headers), status_code=_response.status_code, body=_response_json)
-
-    def get_historical_whois(
-        self, *, api_key: str, domain_name: str, whois: str, request_options: typing.Optional[RequestOptions] = None
-    ) -> HttpResponse[HistoricalWhoisResponse]:
-        """
-        Get Historical WHOIS information for a domain
-
-        Parameters
-        ----------
-        api_key : str
-
-        domain_name : str
-
-        whois : str
-
-        request_options : typing.Optional[RequestOptions]
-            Request-specific configuration.
-
-        Returns
-        -------
-        HttpResponse[HistoricalWhoisResponse]
-        """
-        _response = self._client_wrapper.httpx_client.request(
-            "",
-            method="GET",
-            params={
-                "apiKey": api_key,
-                "domainName": domain_name,
-            },
-            headers={
-                "whois": str(whois) if whois is not None else None,
-            },
-            request_options=request_options,
-        )
-        try:
-            if 200 <= _response.status_code < 300:
-                _data = typing.cast(
-                    HistoricalWhoisResponse,
-                    parse_obj_as(
-                        type_=HistoricalWhoisResponse,  # type: ignore
+                        type_=WhoisResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -117,11 +66,11 @@ class AsyncRawWhoisClient:
     def __init__(self, *, client_wrapper: AsyncClientWrapper):
         self._client_wrapper = client_wrapper
 
-    async def get_live_whois(
+    async def get_whois(
         self, *, api_key: str, domain_name: str, whois: str, request_options: typing.Optional[RequestOptions] = None
-    ) -> AsyncHttpResponse[LiveWhoisResponse]:
+    ) -> AsyncHttpResponse[WhoisResponse]:
         """
-        Get WHOIS information for a domain
+        Get WHOIS information for a domain (live or historical)
 
         Parameters
         ----------
@@ -136,7 +85,7 @@ class AsyncRawWhoisClient:
 
         Returns
         -------
-        AsyncHttpResponse[LiveWhoisResponse]
+        AsyncHttpResponse[WhoisResponse]
         """
         _response = await self._client_wrapper.httpx_client.request(
             "",
@@ -144,66 +93,16 @@ class AsyncRawWhoisClient:
             params={
                 "apiKey": api_key,
                 "domainName": domain_name,
-            },
-            headers={
-                "whois": str(whois) if whois is not None else None,
+                "whois": whois,
             },
             request_options=request_options,
         )
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    LiveWhoisResponse,
+                    WhoisResponse,
                     parse_obj_as(
-                        type_=LiveWhoisResponse,  # type: ignore
-                        object_=_response.json(),
-                    ),
-                )
-                return AsyncHttpResponse(response=_response, data=_data)
-            _response_json = _response.json()
-        except JSONDecodeError:
-            raise ApiError(headers=dict(_response.headers), status_code=_response.status_code, body=_response.text)
-        raise ApiError(headers=dict(_response.headers), status_code=_response.status_code, body=_response_json)
-
-    async def get_historical_whois(
-        self, *, api_key: str, domain_name: str, whois: str, request_options: typing.Optional[RequestOptions] = None
-    ) -> AsyncHttpResponse[HistoricalWhoisResponse]:
-        """
-        Get Historical WHOIS information for a domain
-
-        Parameters
-        ----------
-        api_key : str
-
-        domain_name : str
-
-        whois : str
-
-        request_options : typing.Optional[RequestOptions]
-            Request-specific configuration.
-
-        Returns
-        -------
-        AsyncHttpResponse[HistoricalWhoisResponse]
-        """
-        _response = await self._client_wrapper.httpx_client.request(
-            "",
-            method="GET",
-            params={
-                "apiKey": api_key,
-                "domainName": domain_name,
-            },
-            headers={
-                "whois": str(whois) if whois is not None else None,
-            },
-            request_options=request_options,
-        )
-        try:
-            if 200 <= _response.status_code < 300:
-                _data = typing.cast(
-                    HistoricalWhoisResponse,
-                    parse_obj_as(
-                        type_=HistoricalWhoisResponse,  # type: ignore
+                        type_=WhoisResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )

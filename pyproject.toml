@@ -3,7 +3,7 @@ name = "whois-sdk"
 
 [tool.poetry]
 name = "whois-sdk"
-version = "1.0.6"
+version = "1.0.7"
 description = ""
 readme = "README.md"
 authors = []

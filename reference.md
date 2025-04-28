@@ -1,6 +1,6 @@
 # Reference
 ## Whois
-<details><summary><code>client.whois.<a href="src/whoisfreaks/whois/client.py">get_whois</a>(...)</code></summary>
+<details><summary><code>client.whois.<a href="src/whoisfreaks/whois/client.py">get_live_whois</a>(...)</code></summary>
 <dl>
 <dd>
 
@@ -30,7 +30,89 @@ Get WHOIS information for a domain
 from whoisfreaks import WhoisfreaksApi
 from whoisfreaks.environment import WhoisfreaksApiEnvironment
 client = WhoisfreaksApi(environment=WhoisfreaksApiEnvironment.PRODUCTION, )
-client.whois.get_whois(whois='live', api_key='YOUR_API_KEY', domain_name='888starzci.ci', )
+client.whois.get_live_whois(whois='live', api_key='YOUR_API_KEY', domain_name='888starzci.ci', )
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**api_key:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**domain_name:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**whois:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.whois.<a href="src/whoisfreaks/whois/client.py">get_historical_whois</a>(...)</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Get Historical WHOIS information for a domain
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from whoisfreaks import WhoisfreaksApi
+from whoisfreaks.environment import WhoisfreaksApiEnvironment
+client = WhoisfreaksApi(environment=WhoisfreaksApiEnvironment.PRODUCTION, )
+client.whois.get_historical_whois(whois='historical', api_key='YOUR_API_KEY', domain_name='whoisfreaks.com', )
 
 ```
 </dd>

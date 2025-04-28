@@ -41,7 +41,10 @@ class WhoisClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> WhoisResponse:
         """
-        Get WHOIS information for a domain (live, historical or reverse)
+        Get WHOIS information for a domain. Supports three query types:
+        - Live WHOIS: Get current domain registration information
+        - Historical WHOIS: Get historical registration records for a domain
+        - Reverse WHOIS: Search domains by registrant information
 
         Parameters
         ----------
@@ -134,7 +137,10 @@ class AsyncWhoisClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> WhoisResponse:
         """
-        Get WHOIS information for a domain (live, historical or reverse)
+        Get WHOIS information for a domain. Supports three query types:
+        - Live WHOIS: Get current domain registration information
+        - Historical WHOIS: Get historical registration records for a domain
+        - Reverse WHOIS: Search domains by registrant information
 
         Parameters
         ----------

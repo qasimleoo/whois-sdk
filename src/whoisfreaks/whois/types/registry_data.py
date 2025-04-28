@@ -3,17 +3,12 @@
 import typing
 
 import pydantic
-import typing_extensions
 from ...core.pydantic_utilities import IS_PYDANTIC_V2, UniversalBaseModel
-from ...core.serialization import FieldMetadata
-from .contact import Contact
 from .domain_registrar import DomainRegistrar
-from .registry_data import RegistryData
 
 
-class WhoisResponse(UniversalBaseModel):
-    status: bool
-    domain_name: str
+class RegistryData(UniversalBaseModel):
+    domain_name: typing.Optional[str] = None
     query_time: typing.Optional[str] = None
     whois_server: typing.Optional[str] = None
     domain_registered: typing.Optional[str] = None
@@ -21,14 +16,9 @@ class WhoisResponse(UniversalBaseModel):
     update_date: typing.Optional[str] = None
     expiry_date: typing.Optional[str] = None
     domain_registrar: typing.Optional[DomainRegistrar] = None
-    registrant_contact: typing.Optional[Contact] = None
-    administrative_contact: typing.Optional[Contact] = None
-    technical_contact: typing.Optional[Contact] = None
     name_servers: typing.Optional[typing.List[str]] = None
     domain_status: typing.Optional[typing.List[str]] = None
-    whois_raw_domain: typing.Optional[str] = None
-    registry_data: typing.Optional[RegistryData] = None
-    raw_response: typing_extensions.Annotated[typing.Optional[str], FieldMetadata(alias="rawResponse")] = None
+    whois_raw_registery: typing.Optional[str] = None
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

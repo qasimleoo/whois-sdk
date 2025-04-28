@@ -5,6 +5,15 @@
 from . import whois
 from .client import AsyncWhoisfreaksApi, WhoisfreaksApi
 from .version import __version__
-from .whois import WhoisResponse
+from .whois import Contact, DomainRegistrar, RegistryData, WhoisResponse
 
-__all__ = ["AsyncWhoisfreaksApi", "WhoisResponse", "WhoisfreaksApi", "__version__", "whois"]
+__all__ = [
+    "AsyncWhoisfreaksApi",
+    "Contact",
+    "DomainRegistrar",
+    "RegistryData",
+    "WhoisResponse",
+    "WhoisfreaksApi",
+    "__version__",
+    "whois",
+]

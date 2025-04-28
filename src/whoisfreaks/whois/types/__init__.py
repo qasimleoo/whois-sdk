@@ -2,6 +2,9 @@
 
 # isort: skip_file
 
+from .contact import Contact
+from .domain_registrar import DomainRegistrar
+from .registry_data import RegistryData
 from .whois_response import WhoisResponse
 
-__all__ = ["WhoisResponse"]
+__all__ = ["Contact", "DomainRegistrar", "RegistryData", "WhoisResponse"]

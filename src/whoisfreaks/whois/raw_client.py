@@ -16,7 +16,21 @@ class RawWhoisClient:
         self._client_wrapper = client_wrapper
 
     def get_whois(
-        self, *, api_key: str, domain_name: str, whois: str, request_options: typing.Optional[RequestOptions] = None
+        self,
+        *,
+        api_key: str,
+        whois: str,
+        domain_name: typing.Optional[str] = None,
+        keyword: typing.Optional[str] = None,
+        email: typing.Optional[str] = None,
+        owner: typing.Optional[str] = None,
+        company: typing.Optional[str] = None,
+        mode: typing.Optional[str] = None,
+        exact: typing.Optional[str] = None,
+        format: typing.Optional[str] = None,
+        includes: typing.Optional[str] = None,
+        page: typing.Optional[str] = None,
+        request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[WhoisResponse]:
         """
         Get WHOIS information for a domain (live or historical)
@@ -25,9 +39,27 @@ class RawWhoisClient:
         ----------
         api_key : str
 
-        domain_name : str
-
         whois : str
+
+        domain_name : typing.Optional[str]
+
+        keyword : typing.Optional[str]
+
+        email : typing.Optional[str]
+
+        owner : typing.Optional[str]
+
+        company : typing.Optional[str]
+
+        mode : typing.Optional[str]
+
+        exact : typing.Optional[str]
+
+        format : typing.Optional[str]
+
+        includes : typing.Optional[str]
+
+        page : typing.Optional[str]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -37,12 +69,21 @@ class RawWhoisClient:
         HttpResponse[WhoisResponse]
         """
         _response = self._client_wrapper.httpx_client.request(
-            "",
+            "whois",
             method="GET",
             params={
                 "apiKey": api_key,
                 "domainName": domain_name,
                 "whois": whois,
+                "keyword": keyword,
+                "email": email,
+                "owner": owner,
+                "company": company,
+                "mode": mode,
+                "exact": exact,
+                "format": format,
+                "includes": includes,
+                "page": page,
             },
             request_options=request_options,
         )
@@ -67,7 +108,21 @@ class AsyncRawWhoisClient:
         self._client_wrapper = client_wrapper
 
     async def get_whois(
-        self, *, api_key: str, domain_name: str, whois: str, request_options: typing.Optional[RequestOptions] = None
+        self,
+        *,
+        api_key: str,
+        whois: str,
+        domain_name: typing.Optional[str] = None,
+        keyword: typing.Optional[str] = None,
+        email: typing.Optional[str] = None,
+        owner: typing.Optional[str] = None,
+        company: typing.Optional[str] = None,
+        mode: typing.Optional[str] = None,
+        exact: typing.Optional[str] = None,
+        format: typing.Optional[str] = None,
+        includes: typing.Optional[str] = None,
+        page: typing.Optional[str] = None,
+        request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[WhoisResponse]:
         """
         Get WHOIS information for a domain (live or historical)
@@ -76,9 +131,27 @@ class AsyncRawWhoisClient:
         ----------
         api_key : str
 
-        domain_name : str
-
         whois : str
+
+        domain_name : typing.Optional[str]
+
+        keyword : typing.Optional[str]
+
+        email : typing.Optional[str]
+
+        owner : typing.Optional[str]
+
+        company : typing.Optional[str]
+
+        mode : typing.Optional[str]
+
+        exact : typing.Optional[str]
+
+        format : typing.Optional[str]
+
+        includes : typing.Optional[str]
+
+        page : typing.Optional[str]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -88,12 +161,21 @@ class AsyncRawWhoisClient:
         AsyncHttpResponse[WhoisResponse]
         """
         _response = await self._client_wrapper.httpx_client.request(
-            "",
+            "whois",
             method="GET",
             params={
                 "apiKey": api_key,
                 "domainName": domain_name,
                 "whois": whois,
+                "keyword": keyword,
+                "email": email,
+                "owner": owner,
+                "company": company,
+                "mode": mode,
+                "exact": exact,
+                "format": format,
+                "includes": includes,
+                "page": page,
             },
             request_options=request_options,
         )

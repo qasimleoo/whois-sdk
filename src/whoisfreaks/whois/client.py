@@ -24,7 +24,21 @@ class WhoisClient:
         return self._raw_client
 
     def get_whois(
-        self, *, api_key: str, domain_name: str, whois: str, request_options: typing.Optional[RequestOptions] = None
+        self,
+        *,
+        api_key: str,
+        whois: str,
+        domain_name: typing.Optional[str] = None,
+        keyword: typing.Optional[str] = None,
+        email: typing.Optional[str] = None,
+        owner: typing.Optional[str] = None,
+        company: typing.Optional[str] = None,
+        mode: typing.Optional[str] = None,
+        exact: typing.Optional[str] = None,
+        format: typing.Optional[str] = None,
+        includes: typing.Optional[str] = None,
+        page: typing.Optional[str] = None,
+        request_options: typing.Optional[RequestOptions] = None,
     ) -> WhoisResponse:
         """
         Get WHOIS information for a domain (live or historical)
@@ -33,9 +47,27 @@ class WhoisClient:
         ----------
         api_key : str
 
-        domain_name : str
-
         whois : str
+
+        domain_name : typing.Optional[str]
+
+        keyword : typing.Optional[str]
+
+        email : typing.Optional[str]
+
+        owner : typing.Optional[str]
+
+        company : typing.Optional[str]
+
+        mode : typing.Optional[str]
+
+        exact : typing.Optional[str]
+
+        format : typing.Optional[str]
+
+        includes : typing.Optional[str]
+
+        page : typing.Optional[str]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -52,7 +84,19 @@ class WhoisClient:
         client.whois.get_whois(api_key='YOUR_API_KEY', domain_name='888starzci.ci', whois='live', )
         """
         _response = self._raw_client.get_whois(
-            api_key=api_key, domain_name=domain_name, whois=whois, request_options=request_options
+            api_key=api_key,
+            whois=whois,
+            domain_name=domain_name,
+            keyword=keyword,
+            email=email,
+            owner=owner,
+            company=company,
+            mode=mode,
+            exact=exact,
+            format=format,
+            includes=includes,
+            page=page,
+            request_options=request_options,
         )
         return _response.data
 
@@ -73,7 +117,21 @@ class AsyncWhoisClient:
         return self._raw_client
 
     async def get_whois(
-        self, *, api_key: str, domain_name: str, whois: str, request_options: typing.Optional[RequestOptions] = None
+        self,
+        *,
+        api_key: str,
+        whois: str,
+        domain_name: typing.Optional[str] = None,
+        keyword: typing.Optional[str] = None,
+        email: typing.Optional[str] = None,
+        owner: typing.Optional[str] = None,
+        company: typing.Optional[str] = None,
+        mode: typing.Optional[str] = None,
+        exact: typing.Optional[str] = None,
+        format: typing.Optional[str] = None,
+        includes: typing.Optional[str] = None,
+        page: typing.Optional[str] = None,
+        request_options: typing.Optional[RequestOptions] = None,
     ) -> WhoisResponse:
         """
         Get WHOIS information for a domain (live or historical)
@@ -82,9 +140,27 @@ class AsyncWhoisClient:
         ----------
         api_key : str
 
-        domain_name : str
-
         whois : str
+
+        domain_name : typing.Optional[str]
+
+        keyword : typing.Optional[str]
+
+        email : typing.Optional[str]
+
+        owner : typing.Optional[str]
+
+        company : typing.Optional[str]
+
+        mode : typing.Optional[str]
+
+        exact : typing.Optional[str]
+
+        format : typing.Optional[str]
+
+        includes : typing.Optional[str]
+
+        page : typing.Optional[str]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -104,6 +180,18 @@ class AsyncWhoisClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.get_whois(
-            api_key=api_key, domain_name=domain_name, whois=whois, request_options=request_options
+            api_key=api_key,
+            whois=whois,
+            domain_name=domain_name,
+            keyword=keyword,
+            email=email,
+            owner=owner,
+            company=company,
+            mode=mode,
+            exact=exact,
+            format=format,
+            includes=includes,
+            page=page,
+            request_options=request_options,
         )
         return _response.data

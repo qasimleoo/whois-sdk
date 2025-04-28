@@ -4,4 +4,4 @@ import enum
 
 
 class WhoisfreaksApiEnvironment(enum.Enum):
-    PRODUCTION = "https://api.whoisfreaks.com/v1.0/whois"
+    PRODUCTION = "https://api.whoisfreaks.com/v1.0"

@@ -11,9 +11,9 @@ from .reseller_contact import ResellerContact
 
 
 class HistoricalRecord(UniversalBaseModel):
-    num: int
-    status: bool
-    domain_name: str
+    num: typing.Optional[int] = None
+    status: typing.Optional[bool] = None
+    domain_name: typing.Optional[str] = None
     query_time: typing.Optional[str] = None
     whois_server: typing.Optional[str] = None
     create_date: typing.Optional[str] = None

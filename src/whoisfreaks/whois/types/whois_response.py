@@ -14,7 +14,7 @@ from .reseller_contact import ResellerContact
 
 
 class WhoisResponse(UniversalBaseModel):
-    status: bool
+    status: typing.Optional[bool] = None
     domain_name: typing.Optional[str] = None
     query_time: typing.Optional[str] = None
     whois_server: typing.Optional[str] = None
@@ -35,6 +35,9 @@ class WhoisResponse(UniversalBaseModel):
     raw_response: typing_extensions.Annotated[typing.Optional[str], FieldMetadata(alias="rawResponse")] = None
     whois: typing.Optional[str] = None
     total_records: typing.Optional[str] = None
+    total_result: typing_extensions.Annotated[typing.Optional[int], FieldMetadata(alias="total_Result")] = None
+    total_pages: typing_extensions.Annotated[typing.Optional[int], FieldMetadata(alias="total_Pages")] = None
+    current_page: typing_extensions.Annotated[typing.Optional[int], FieldMetadata(alias="current_Page")] = None
     whois_domains_historical: typing.Optional[typing.List[HistoricalRecord]] = None
 
     if IS_PYDANTIC_V2:

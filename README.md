@@ -21,7 +21,8 @@ Instantiate and use the client with the following:
 
 ```python
 from whoisfreaks import WhoisfreaksApi
-client = WhoisfreaksApi(base_url="https://yourhost.com/path/to/api", )
+from whoisfreaks.environment import WhoisfreaksApiEnvironment
+client = WhoisfreaksApi(environment=WhoisfreaksApiEnvironment.PRODUCTION, )
 client.whois.get_whois(api_key='YOUR_API_KEY', whois='live', domain_name='888starzci.ci', )
 ```
 
@@ -31,8 +32,9 @@ The SDK also exports an `async` client so that you can make non-blocking calls t
 
 ```python
 from whoisfreaks import AsyncWhoisfreaksApi
+from whoisfreaks.environment import WhoisfreaksApiEnvironment
 import asyncio
-client = AsyncWhoisfreaksApi(base_url="https://yourhost.com/path/to/api", )
+client = AsyncWhoisfreaksApi(environment=WhoisfreaksApiEnvironment.PRODUCTION, )
 async def main() -> None:
     await client.whois.get_whois(api_key='YOUR_API_KEY', whois='live', domain_name='888starzci.ci', )
 asyncio.run(main())```

@@ -47,7 +47,8 @@ class WhoisClient:
         Examples
         --------
         from whoisfreaks import WhoisfreaksApi
-        client = WhoisfreaksApi(base_url="https://yourhost.com/path/to/api", )
+        from whoisfreaks.environment import WhoisfreaksApiEnvironment
+        client = WhoisfreaksApi(environment=WhoisfreaksApiEnvironment.PRODUCTION, )
         client.whois.get_whois(api_key='YOUR_API_KEY', whois='live', domain_name='888starzci.ci', )
         """
         _response = self._raw_client.get_whois(
@@ -95,8 +96,9 @@ class AsyncWhoisClient:
         Examples
         --------
         from whoisfreaks import AsyncWhoisfreaksApi
+        from whoisfreaks.environment import WhoisfreaksApiEnvironment
         import asyncio
-        client = AsyncWhoisfreaksApi(base_url="https://yourhost.com/path/to/api", )
+        client = AsyncWhoisfreaksApi(environment=WhoisfreaksApiEnvironment.PRODUCTION, )
         async def main() -> None:
             await client.whois.get_whois(api_key='YOUR_API_KEY', whois='live', domain_name='888starzci.ci', )
         asyncio.run(main())

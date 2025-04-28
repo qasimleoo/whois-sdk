@@ -37,7 +37,7 @@ class RawWhoisClient:
         HttpResponse[LiveWhoisResponse]
         """
         _response = self._client_wrapper.httpx_client.request(
-            "whois",
+            "",
             method="GET",
             params={
                 "apiKey": api_key,
@@ -88,7 +88,7 @@ class AsyncRawWhoisClient:
         AsyncHttpResponse[LiveWhoisResponse]
         """
         _response = await self._client_wrapper.httpx_client.request(
-            "whois",
+            "",
             method="GET",
             params={
                 "apiKey": api_key,

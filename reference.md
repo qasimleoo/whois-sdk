@@ -28,7 +28,8 @@ Get WHOIS information for a domain
 
 ```python
 from whoisfreaks import WhoisfreaksApi
-client = WhoisfreaksApi(base_url="https://yourhost.com/path/to/api", )
+from whoisfreaks.environment import WhoisfreaksApiEnvironment
+client = WhoisfreaksApi(environment=WhoisfreaksApiEnvironment.PRODUCTION, )
 client.whois.get_whois(api_key='YOUR_API_KEY', whois='live', domain_name='888starzci.ci', )
 
 ```

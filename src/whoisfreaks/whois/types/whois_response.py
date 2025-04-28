@@ -11,10 +11,11 @@ from .domain_registrar import DomainRegistrar
 from .historical_record import HistoricalRecord
 from .registry_data import RegistryData
 from .reseller_contact import ResellerContact
+from .status import Status
 
 
 class WhoisResponse(UniversalBaseModel):
-    status: typing.Optional[bool] = None
+    status: typing.Optional[Status] = None
     domain_name: typing.Optional[str] = None
     query_time: typing.Optional[str] = None
     whois_server: typing.Optional[str] = None
@@ -39,6 +40,10 @@ class WhoisResponse(UniversalBaseModel):
     total_pages: typing_extensions.Annotated[typing.Optional[int], FieldMetadata(alias="total_Pages")] = None
     current_page: typing_extensions.Annotated[typing.Optional[int], FieldMetadata(alias="current_Page")] = None
     whois_domains_historical: typing.Optional[typing.List[HistoricalRecord]] = None
+    timestamp: typing.Optional[str] = None
+    error: typing.Optional[str] = None
+    message: typing.Optional[str] = None
+    path: typing.Optional[str] = None
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

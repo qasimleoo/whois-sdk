@@ -12,7 +12,7 @@
 <dl>
 <dd>
 
-Get WHOIS information for a domain (live or historical)
+Get WHOIS information for a domain (live, historical or reverse)
 </dd>
 </dl>
 </dd>
@@ -30,7 +30,7 @@ Get WHOIS information for a domain (live or historical)
 from whoisfreaks import WhoisfreaksApi
 from whoisfreaks.environment import WhoisfreaksApiEnvironment
 client = WhoisfreaksApi(environment=WhoisfreaksApiEnvironment.PRODUCTION, )
-client.whois.get_whois(api_key='YOUR_API_KEY', domain_name='whoisfreaks.com', whois='reverse', )
+client.whois.get_whois(api_key='YOUR_API_KEY', domain_name='whoisfreaks.com', whois='reverse', keyword='google', email='google@gmail.com', owner='markmonitor', company='google', mode='mini', exact='true', format='xml', includes='billing', page='3', )
 
 ```
 </dd>

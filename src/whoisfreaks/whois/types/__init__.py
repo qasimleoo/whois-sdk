@@ -7,6 +7,15 @@ from .domain_registrar import DomainRegistrar
 from .historical_record import HistoricalRecord
 from .registry_data import RegistryData
 from .reseller_contact import ResellerContact
+from .status import Status
 from .whois_response import WhoisResponse
 
-__all__ = ["Contact", "DomainRegistrar", "HistoricalRecord", "RegistryData", "ResellerContact", "WhoisResponse"]
+__all__ = [
+    "Contact",
+    "DomainRegistrar",
+    "HistoricalRecord",
+    "RegistryData",
+    "ResellerContact",
+    "Status",
+    "WhoisResponse",
+]

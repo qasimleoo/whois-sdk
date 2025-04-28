@@ -41,7 +41,7 @@ class WhoisClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> WhoisResponse:
         """
-        Get WHOIS information for a domain (live or historical)
+        Get WHOIS information for a domain (live, historical or reverse)
 
         Parameters
         ----------
@@ -134,7 +134,7 @@ class AsyncWhoisClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> WhoisResponse:
         """
-        Get WHOIS information for a domain (live or historical)
+        Get WHOIS information for a domain (live, historical or reverse)
 
         Parameters
         ----------

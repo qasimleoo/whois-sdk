@@ -41,46 +41,7 @@ class WhoisClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> WhoisResponse:
         """
-        # WHOIS API
-        Get WHOIS information for domains using three different query types:
-
-        ## 1. Live WHOIS
-        Get current domain registration information:
-        ```python
-        client.whois.get_whois(
-            api_key="YOUR_API_KEY",
-            domain_name="example.com",
-            whois="live"
-        )
-        ```
-
-        ## 2. Historical WHOIS
-        Get historical registration records for a domain:
-        ```python
-        client.whois.get_whois(
-            api_key="YOUR_API_KEY",
-            domain_name="example.com",
-            whois="historical"
-        )
-        ```
-
-        ## 3. Reverse WHOIS
-        Search domains by registrant information:
-        ```python
-        client.whois.get_whois(
-            api_key="YOUR_API_KEY",
-            whois="reverse",
-            keyword="google",
-            email="google@gmail.com",
-            owner="markmonitor",
-            company="google",
-            mode="mini",
-            exact="true",
-            format="xml",
-            includes="billing",
-            page="3"
-        )
-        ```
+        Get WHOIS information for a domain (live, historical or reverse)
 
         Parameters
         ----------
@@ -173,46 +134,7 @@ class AsyncWhoisClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> WhoisResponse:
         """
-        # WHOIS API
-        Get WHOIS information for domains using three different query types:
-
-        ## 1. Live WHOIS
-        Get current domain registration information:
-        ```python
-        client.whois.get_whois(
-            api_key="YOUR_API_KEY",
-            domain_name="example.com",
-            whois="live"
-        )
-        ```
-
-        ## 2. Historical WHOIS
-        Get historical registration records for a domain:
-        ```python
-        client.whois.get_whois(
-            api_key="YOUR_API_KEY",
-            domain_name="example.com",
-            whois="historical"
-        )
-        ```
-
-        ## 3. Reverse WHOIS
-        Search domains by registrant information:
-        ```python
-        client.whois.get_whois(
-            api_key="YOUR_API_KEY",
-            whois="reverse",
-            keyword="google",
-            email="google@gmail.com",
-            owner="markmonitor",
-            company="google",
-            mode="mini",
-            exact="true",
-            format="xml",
-            includes="billing",
-            page="3"
-        )
-        ```
+        Get WHOIS information for a domain (live, historical or reverse)
 
         Parameters
         ----------

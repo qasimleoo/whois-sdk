@@ -12,10 +12,46 @@
 <dl>
 <dd>
 
-Get WHOIS information for a domain. Supports three query types:
-- Live WHOIS: Get current domain registration information
-- Historical WHOIS: Get historical registration records for a domain
-- Reverse WHOIS: Search domains by registrant, keyword, email or company information
+# WHOIS API
+Get WHOIS information for domains using three different query types:
+
+## 1. Live WHOIS
+Get current domain registration information:
+```python
+client.whois.get_whois(
+    api_key="YOUR_API_KEY",
+    domain_name="example.com",
+    whois="live"
+)
+```
+
+## 2. Historical WHOIS
+Get historical registration records for a domain:
+```python
+client.whois.get_whois(
+    api_key="YOUR_API_KEY",
+    domain_name="example.com",
+    whois="historical"
+)
+```
+
+## 3. Reverse WHOIS
+Search domains by registrant information:
+```python
+client.whois.get_whois(
+    api_key="YOUR_API_KEY",
+    whois="reverse",
+    keyword="google",
+    email="google@gmail.com",
+    owner="markmonitor",
+    company="google",
+    mode="mini",
+    exact="true",
+    format="xml",
+    includes="billing",
+    page="3"
+)
+```
 </dd>
 </dl>
 </dd>

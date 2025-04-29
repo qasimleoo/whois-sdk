@@ -1,4 +1,71 @@
 # Reference
+## Credits
+<details><summary><code>client.credits.<a href="src/whoisfreaks/credits/client.py">credits_usage_api</a>(...)</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+You need credits to use Whois and DNS APIs. You can use this API to see your remaining credits for your API Key.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from whoisfreaks import WhoisfreaksApi
+from whoisfreaks.environment import WhoisfreaksApiEnvironment
+client = WhoisfreaksApi(environment=WhoisfreaksApiEnvironment.PRODUCTION, )
+client.credits.credits_usage_api(api_key='YOUR_API_KEY', )
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**api_key:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## Dns
 <details><summary><code>client.dns.<a href="src/whoisfreaks/dns/client.py">live_dns_lookup</a>(...)</code></summary>
 <dl>

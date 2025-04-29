@@ -2,8 +2,9 @@
 
 # isort: skip_file
 
-from . import dns, whois
+from . import credits, dns, whois
 from .client import AsyncWhoisfreaksApi, WhoisfreaksApi
+from .credits import ApiCredits, ApiSubscription, CreditsResponse
 from .dns import (
     BulkDnsInfo,
     BulkDnsResponse,
@@ -37,6 +38,8 @@ from .whois import (
 )
 
 __all__ = [
+    "ApiCredits",
+    "ApiSubscription",
     "AsBlock",
     "AsnContact",
     "AsnOrganization",
@@ -48,6 +51,7 @@ __all__ = [
     "BulkWhoisRecord",
     "BulkWhoisResponse",
     "Contact",
+    "CreditsResponse",
     "DnsHistoricalResponse",
     "DnsLiveResponse",
     "DnsRecord",
@@ -66,6 +70,7 @@ __all__ = [
     "WhoisfreaksApi",
     "WhoisfreaksApiEnvironment",
     "__version__",
+    "credits",
     "dns",
     "whois",
 ]

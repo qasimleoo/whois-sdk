@@ -2,7 +2,7 @@
 
 # isort: skip_file
 
-from . import credits, dns, whois
+from . import credits, dns, domain_availability, ssl, whois
 from .client import AsyncWhoisfreaksApi, WhoisfreaksApi
 from .credits import ApiCredits, ApiSubscription, CreditsResponse
 from .dns import (
@@ -14,7 +14,24 @@ from .dns import (
     DnsReverseResponse,
     HistoricalDnsRecord,
 )
+from .domain_availability import (
+    BulkDomainAvailability,
+    BulkDomainAvailabilityResponse,
+    DomainAvailability,
+    DomainAvailabilityResponse,
+)
 from .environment import WhoisfreaksApiEnvironment
+from .ssl import (
+    AuthorityInfoAccess,
+    CertificatePolicy,
+    SslCertificate,
+    SslExtensions,
+    SslIssuer,
+    SslLiveLookupResponse,
+    SslPublicKey,
+    SslSubject,
+    SubjectAlternativeNames,
+)
 from .version import __version__
 from .whois import (
     AsBlock,
@@ -46,16 +63,22 @@ __all__ = [
     "AsnWhoisResponse",
     "AsyncWhoisfreaksApi",
     "AutNum",
+    "AuthorityInfoAccess",
     "BulkDnsInfo",
     "BulkDnsResponse",
+    "BulkDomainAvailability",
+    "BulkDomainAvailabilityResponse",
     "BulkWhoisRecord",
     "BulkWhoisResponse",
+    "CertificatePolicy",
     "Contact",
     "CreditsResponse",
     "DnsHistoricalResponse",
     "DnsLiveResponse",
     "DnsRecord",
     "DnsReverseResponse",
+    "DomainAvailability",
+    "DomainAvailabilityResponse",
     "DomainRegistrar",
     "HistoricalDnsRecord",
     "HistoricalRecord",
@@ -65,12 +88,21 @@ __all__ = [
     "Organization",
     "RegistryData",
     "ResellerContact",
+    "SslCertificate",
+    "SslExtensions",
+    "SslIssuer",
+    "SslLiveLookupResponse",
+    "SslPublicKey",
+    "SslSubject",
     "Status",
+    "SubjectAlternativeNames",
     "WhoisResponse",
     "WhoisfreaksApi",
     "WhoisfreaksApiEnvironment",
     "__version__",
     "credits",
     "dns",
+    "domain_availability",
+    "ssl",
     "whois",
 ]

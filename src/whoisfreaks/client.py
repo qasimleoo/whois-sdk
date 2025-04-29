@@ -6,7 +6,9 @@ import httpx
 from .core.client_wrapper import AsyncClientWrapper, SyncClientWrapper
 from .credits.client import AsyncCreditsClient, CreditsClient
 from .dns.client import AsyncDnsClient, DnsClient
+from .domain_availability.client import AsyncDomainAvailabilityClient, DomainAvailabilityClient
 from .environment import WhoisfreaksApiEnvironment
+from .ssl.client import AsyncSslClient, SslClient
 from .whois.client import AsyncWhoisClient, WhoisClient
 
 
@@ -61,6 +63,8 @@ class WhoisfreaksApi:
         )
         self.credits = CreditsClient(client_wrapper=self._client_wrapper)
         self.dns = DnsClient(client_wrapper=self._client_wrapper)
+        self.domain_availability = DomainAvailabilityClient(client_wrapper=self._client_wrapper)
+        self.ssl = SslClient(client_wrapper=self._client_wrapper)
         self.whois = WhoisClient(client_wrapper=self._client_wrapper)
 
 
@@ -115,6 +119,8 @@ class AsyncWhoisfreaksApi:
         )
         self.credits = AsyncCreditsClient(client_wrapper=self._client_wrapper)
         self.dns = AsyncDnsClient(client_wrapper=self._client_wrapper)
+        self.domain_availability = AsyncDomainAvailabilityClient(client_wrapper=self._client_wrapper)
+        self.ssl = AsyncSslClient(client_wrapper=self._client_wrapper)
         self.whois = AsyncWhoisClient(client_wrapper=self._client_wrapper)
 
 

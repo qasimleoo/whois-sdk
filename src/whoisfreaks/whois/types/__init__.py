@@ -7,6 +7,8 @@ from .asn_contact import AsnContact
 from .asn_organization import AsnOrganization
 from .asn_whois_response import AsnWhoisResponse
 from .aut_num import AutNum
+from .bulk_whois_record import BulkWhoisRecord
+from .bulk_whois_response import BulkWhoisResponse
 from .contact import Contact
 from .domain_registrar import DomainRegistrar
 from .historical_record import HistoricalRecord
@@ -25,6 +27,8 @@ __all__ = [
     "AsnOrganization",
     "AsnWhoisResponse",
     "AutNum",
+    "BulkWhoisRecord",
+    "BulkWhoisResponse",
     "Contact",
     "DomainRegistrar",
     "HistoricalRecord",

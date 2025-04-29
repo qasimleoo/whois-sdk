@@ -9,8 +9,12 @@ from ..core.http_response import AsyncHttpResponse, HttpResponse
 from ..core.pydantic_utilities import parse_obj_as
 from ..core.request_options import RequestOptions
 from .types.asn_whois_response import AsnWhoisResponse
+from .types.bulk_whois_response import BulkWhoisResponse
 from .types.ip_whois_response import IpWhoisResponse
 from .types.whois_response import WhoisResponse
+
+# this is used as the default value for optional parameters
+OMIT = typing.cast(typing.Any, ...)
 
 
 class RawWhoisClient:
@@ -206,6 +210,60 @@ class RawWhoisClient:
             raise ApiError(headers=dict(_response.headers), status_code=_response.status_code, body=_response.text)
         raise ApiError(headers=dict(_response.headers), status_code=_response.status_code, body=_response_json)
 
+    def get_bulk_whois(
+        self,
+        *,
+        api_key: str,
+        domain_names: typing.Sequence[str],
+        format: typing.Optional[str] = None,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> HttpResponse[BulkWhoisResponse]:
+        """
+        Get Live WHOIS information for more than one domain names
+
+        Parameters
+        ----------
+        api_key : str
+
+        domain_names : typing.Sequence[str]
+
+        format : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        HttpResponse[BulkWhoisResponse]
+        """
+        _response = self._client_wrapper.httpx_client.request(
+            "bulkwhois",
+            method="POST",
+            params={
+                "apiKey": api_key,
+                "format": format,
+            },
+            json={
+                "domainNames": domain_names,
+            },
+            request_options=request_options,
+            omit=OMIT,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    BulkWhoisResponse,
+                    parse_obj_as(
+                        type_=BulkWhoisResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return HttpResponse(response=_response, data=_data)
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(headers=dict(_response.headers), status_code=_response.status_code, body=_response.text)
+        raise ApiError(headers=dict(_response.headers), status_code=_response.status_code, body=_response_json)
+
 
 class AsyncRawWhoisClient:
     def __init__(self, *, client_wrapper: AsyncClientWrapper):
@@ -391,6 +449,60 @@ class AsyncRawWhoisClient:
                     AsnWhoisResponse,
                     parse_obj_as(
                         type_=AsnWhoisResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return AsyncHttpResponse(response=_response, data=_data)
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(headers=dict(_response.headers), status_code=_response.status_code, body=_response.text)
+        raise ApiError(headers=dict(_response.headers), status_code=_response.status_code, body=_response_json)
+
+    async def get_bulk_whois(
+        self,
+        *,
+        api_key: str,
+        domain_names: typing.Sequence[str],
+        format: typing.Optional[str] = None,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> AsyncHttpResponse[BulkWhoisResponse]:
+        """
+        Get Live WHOIS information for more than one domain names
+
+        Parameters
+        ----------
+        api_key : str
+
+        domain_names : typing.Sequence[str]
+
+        format : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        AsyncHttpResponse[BulkWhoisResponse]
+        """
+        _response = await self._client_wrapper.httpx_client.request(
+            "bulkwhois",
+            method="POST",
+            params={
+                "apiKey": api_key,
+                "format": format,
+            },
+            json={
+                "domainNames": domain_names,
+            },
+            request_options=request_options,
+            omit=OMIT,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    BulkWhoisResponse,
+                    parse_obj_as(
+                        type_=BulkWhoisResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )

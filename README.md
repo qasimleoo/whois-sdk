@@ -23,7 +23,7 @@ Instantiate and use the client with the following:
 from whoisfreaks import WhoisfreaksApi
 from whoisfreaks.environment import WhoisfreaksApiEnvironment
 client = WhoisfreaksApi(environment=WhoisfreaksApiEnvironment.PRODUCTION, )
-client.whois.get_whois(api_key='YOUR_API_KEY', whois='reverse', keyword='google', email='google@gmail.com', owner='markmonitor', company='google', mode='mini', exact='true', format='xml', includes='billing', page='3', )
+client.whois.get_bulk_whois(api_key='YOUR_API_KEY', format='json', domain_names=['whoisfreaks.com', 'jfreaks.com'], )
 ```
 
 ## Async Client
@@ -36,7 +36,7 @@ from whoisfreaks.environment import WhoisfreaksApiEnvironment
 import asyncio
 client = AsyncWhoisfreaksApi(environment=WhoisfreaksApiEnvironment.PRODUCTION, )
 async def main() -> None:
-    await client.whois.get_whois(api_key='YOUR_API_KEY', whois='reverse', keyword='google', email='google@gmail.com', owner='markmonitor', company='google', mode='mini', exact='true', format='xml', includes='billing', page='3', )
+    await client.whois.get_bulk_whois(api_key='YOUR_API_KEY', format='json', domain_names=['whoisfreaks.com', 'jfreaks.com'], )
 asyncio.run(main())```
 
 ## Exception Handling
@@ -47,7 +47,7 @@ will be thrown.
 ```python
 from whoisfreaks.core.api_error import ApiError
 try:
-    client.whois.get_whois(...)
+    client.whois.get_bulk_whois(...)
 except ApiError as e:
     print(e.status_code)
     print(e.body)
@@ -63,7 +63,7 @@ The `.with_raw_response` property returns a "raw" client that can be used to acc
 ```python
 from whoisfreaks import WhoisfreaksApi
 client = WhoisfreaksApi(..., )
-response = client.whois.with_raw_response.get_whois(...)
+response = client.whois.with_raw_response.get_bulk_whois(...)
 print(response.headers)  # access the response headers
 print(response.data)  # access the underlying object
 ```
@@ -83,7 +83,7 @@ A request is deemed retryable when any of the following HTTP status codes is ret
 Use the `max_retries` request option to configure this behavior.
 
 ```python
-client.whois.get_whois(..., request_options={
+client.whois.get_bulk_whois(..., request_options={
     "max_retries": 1
 })
 ```
@@ -98,7 +98,7 @@ from whoisfreaks import WhoisfreaksApi
 client = WhoisfreaksApi(..., timeout=20.0, )
 
 # Override timeout for a specific method
-client.whois.get_whois(..., request_options={
+client.whois.get_bulk_whois(..., request_options={
     "timeout_in_seconds": 1
 })
 ```

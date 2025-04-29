@@ -6,8 +6,12 @@ from ..core.client_wrapper import AsyncClientWrapper, SyncClientWrapper
 from ..core.request_options import RequestOptions
 from .raw_client import AsyncRawWhoisClient, RawWhoisClient
 from .types.asn_whois_response import AsnWhoisResponse
+from .types.bulk_whois_response import BulkWhoisResponse
 from .types.ip_whois_response import IpWhoisResponse
 from .types.whois_response import WhoisResponse
+
+# this is used as the default value for optional parameters
+OMIT = typing.cast(typing.Any, ...)
 
 
 class WhoisClient:
@@ -175,6 +179,44 @@ class WhoisClient:
         """
         _response = self._raw_client.get_asn_whois(
             api_key=api_key, asn=asn, format=format, request_options=request_options
+        )
+        return _response.data
+
+    def get_bulk_whois(
+        self,
+        *,
+        api_key: str,
+        domain_names: typing.Sequence[str],
+        format: typing.Optional[str] = None,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> BulkWhoisResponse:
+        """
+        Get Live WHOIS information for more than one domain names
+
+        Parameters
+        ----------
+        api_key : str
+
+        domain_names : typing.Sequence[str]
+
+        format : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        BulkWhoisResponse
+
+        Examples
+        --------
+        from whoisfreaks import WhoisfreaksApi
+        from whoisfreaks.environment import WhoisfreaksApiEnvironment
+        client = WhoisfreaksApi(environment=WhoisfreaksApiEnvironment.PRODUCTION, )
+        client.whois.get_bulk_whois(api_key='YOUR_API_KEY', format='json', domain_names=['whoisfreaks.com', 'jfreaks.com'], )
+        """
+        _response = self._raw_client.get_bulk_whois(
+            api_key=api_key, domain_names=domain_names, format=format, request_options=request_options
         )
         return _response.data
 
@@ -353,5 +395,46 @@ class AsyncWhoisClient:
         """
         _response = await self._raw_client.get_asn_whois(
             api_key=api_key, asn=asn, format=format, request_options=request_options
+        )
+        return _response.data
+
+    async def get_bulk_whois(
+        self,
+        *,
+        api_key: str,
+        domain_names: typing.Sequence[str],
+        format: typing.Optional[str] = None,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> BulkWhoisResponse:
+        """
+        Get Live WHOIS information for more than one domain names
+
+        Parameters
+        ----------
+        api_key : str
+
+        domain_names : typing.Sequence[str]
+
+        format : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        BulkWhoisResponse
+
+        Examples
+        --------
+        from whoisfreaks import AsyncWhoisfreaksApi
+        from whoisfreaks.environment import WhoisfreaksApiEnvironment
+        import asyncio
+        client = AsyncWhoisfreaksApi(environment=WhoisfreaksApiEnvironment.PRODUCTION, )
+        async def main() -> None:
+            await client.whois.get_bulk_whois(api_key='YOUR_API_KEY', format='json', domain_names=['whoisfreaks.com', 'jfreaks.com'], )
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.get_bulk_whois(
+            api_key=api_key, domain_names=domain_names, format=format, request_options=request_options
         )
         return _response.data

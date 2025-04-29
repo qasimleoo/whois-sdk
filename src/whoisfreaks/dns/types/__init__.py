@@ -2,7 +2,20 @@
 
 # isort: skip_file
 
+from .bulk_dns_info import BulkDnsInfo
+from .bulk_dns_response import BulkDnsResponse
+from .dns_historical_response import DnsHistoricalResponse
 from .dns_live_response import DnsLiveResponse
 from .dns_record import DnsRecord
+from .dns_reverse_response import DnsReverseResponse
+from .historical_dns_record import HistoricalDnsRecord
 
-__all__ = ["DnsLiveResponse", "DnsRecord"]
+__all__ = [
+    "BulkDnsInfo",
+    "BulkDnsResponse",
+    "DnsHistoricalResponse",
+    "DnsLiveResponse",
+    "DnsRecord",
+    "DnsReverseResponse",
+    "HistoricalDnsRecord",
+]

@@ -4,7 +4,15 @@
 
 from . import dns, whois
 from .client import AsyncWhoisfreaksApi, WhoisfreaksApi
-from .dns import DnsLiveResponse, DnsRecord
+from .dns import (
+    BulkDnsInfo,
+    BulkDnsResponse,
+    DnsHistoricalResponse,
+    DnsLiveResponse,
+    DnsRecord,
+    DnsReverseResponse,
+    HistoricalDnsRecord,
+)
 from .environment import WhoisfreaksApiEnvironment
 from .version import __version__
 from .whois import (
@@ -35,12 +43,17 @@ __all__ = [
     "AsnWhoisResponse",
     "AsyncWhoisfreaksApi",
     "AutNum",
+    "BulkDnsInfo",
+    "BulkDnsResponse",
     "BulkWhoisRecord",
     "BulkWhoisResponse",
     "Contact",
+    "DnsHistoricalResponse",
     "DnsLiveResponse",
     "DnsRecord",
+    "DnsReverseResponse",
     "DomainRegistrar",
+    "HistoricalDnsRecord",
     "HistoricalRecord",
     "InetNum",
     "IpContact",

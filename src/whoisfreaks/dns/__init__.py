@@ -2,6 +2,22 @@
 
 # isort: skip_file
 
-from .types import DnsLiveResponse, DnsRecord
+from .types import (
+    BulkDnsInfo,
+    BulkDnsResponse,
+    DnsHistoricalResponse,
+    DnsLiveResponse,
+    DnsRecord,
+    DnsReverseResponse,
+    HistoricalDnsRecord,
+)
 
-__all__ = ["DnsLiveResponse", "DnsRecord"]
+__all__ = [
+    "BulkDnsInfo",
+    "BulkDnsResponse",
+    "DnsHistoricalResponse",
+    "DnsLiveResponse",
+    "DnsRecord",
+    "DnsReverseResponse",
+    "HistoricalDnsRecord",
+]

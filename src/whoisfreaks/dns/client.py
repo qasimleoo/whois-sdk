@@ -5,7 +5,13 @@ import typing
 from ..core.client_wrapper import AsyncClientWrapper, SyncClientWrapper
 from ..core.request_options import RequestOptions
 from .raw_client import AsyncRawDnsClient, RawDnsClient
+from .types.bulk_dns_response import BulkDnsResponse
+from .types.dns_historical_response import DnsHistoricalResponse
 from .types.dns_live_response import DnsLiveResponse
+from .types.dns_reverse_response import DnsReverseResponse
+
+# this is used as the default value for optional parameters
+OMIT = typing.cast(typing.Any, ...)
 
 
 class DnsClient:
@@ -30,6 +36,7 @@ class DnsClient:
         type: str,
         domain_name: typing.Optional[str] = None,
         ip_address: typing.Optional[str] = None,
+        format: typing.Optional[str] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> DnsLiveResponse:
         """
@@ -44,6 +51,8 @@ class DnsClient:
         domain_name : typing.Optional[str]
 
         ip_address : typing.Optional[str]
+
+        format : typing.Optional[str]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -60,7 +69,236 @@ class DnsClient:
         client.dns.live_dns_lookup(api_key='YOUR_API_KEY', domain_name='google.com', type='all', )
         """
         _response = self._raw_client.live_dns_lookup(
-            api_key=api_key, type=type, domain_name=domain_name, ip_address=ip_address, request_options=request_options
+            api_key=api_key,
+            type=type,
+            domain_name=domain_name,
+            ip_address=ip_address,
+            format=format,
+            request_options=request_options,
+        )
+        return _response.data
+
+    def ns_lookup(
+        self,
+        *,
+        api_key: str,
+        type: str,
+        domain_name: typing.Optional[str] = None,
+        format: typing.Optional[str] = None,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> DnsLiveResponse:
+        """
+        Get NS information for a domain
+
+        Parameters
+        ----------
+        api_key : str
+
+        type : str
+
+        domain_name : typing.Optional[str]
+
+        format : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        DnsLiveResponse
+
+        Examples
+        --------
+        from whoisfreaks import WhoisfreaksApi
+        from whoisfreaks.environment import WhoisfreaksApiEnvironment
+        client = WhoisfreaksApi(environment=WhoisfreaksApiEnvironment.PRODUCTION, )
+        client.dns.ns_lookup(api_key='YOUR_API_KEY', domain_name='google.com', type='ns', )
+        """
+        _response = self._raw_client.ns_lookup(
+            api_key=api_key, type=type, domain_name=domain_name, format=format, request_options=request_options
+        )
+        return _response.data
+
+    def mx_lookup(
+        self,
+        *,
+        api_key: str,
+        type: str,
+        domain_name: typing.Optional[str] = None,
+        format: typing.Optional[str] = None,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> DnsLiveResponse:
+        """
+        Get MX information for a domain
+
+        Parameters
+        ----------
+        api_key : str
+
+        type : str
+
+        domain_name : typing.Optional[str]
+
+        format : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        DnsLiveResponse
+
+        Examples
+        --------
+        from whoisfreaks import WhoisfreaksApi
+        from whoisfreaks.environment import WhoisfreaksApiEnvironment
+        client = WhoisfreaksApi(environment=WhoisfreaksApiEnvironment.PRODUCTION, )
+        client.dns.mx_lookup(api_key='YOUR_API_KEY', domain_name='google.com', type='mx', )
+        """
+        _response = self._raw_client.mx_lookup(
+            api_key=api_key, type=type, domain_name=domain_name, format=format, request_options=request_options
+        )
+        return _response.data
+
+    def historical_dns_lookup(
+        self,
+        *,
+        api_key: str,
+        domain_name: str,
+        type: str,
+        page: typing.Optional[int] = None,
+        format: typing.Optional[str] = None,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> DnsHistoricalResponse:
+        """
+        Get Historical DNS information for a domain
+
+        Parameters
+        ----------
+        api_key : str
+
+        domain_name : str
+
+        type : str
+
+        page : typing.Optional[int]
+
+        format : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        DnsHistoricalResponse
+
+        Examples
+        --------
+        from whoisfreaks import WhoisfreaksApi
+        from whoisfreaks.environment import WhoisfreaksApiEnvironment
+        client = WhoisfreaksApi(environment=WhoisfreaksApiEnvironment.PRODUCTION, )
+        client.dns.historical_dns_lookup(api_key='YOUR_API_KEY', domain_name='google.com', type='all', page=1, )
+        """
+        _response = self._raw_client.historical_dns_lookup(
+            api_key=api_key,
+            domain_name=domain_name,
+            type=type,
+            page=page,
+            format=format,
+            request_options=request_options,
+        )
+        return _response.data
+
+    def reverse_dns_lookup(
+        self,
+        *,
+        api_key: str,
+        value: str,
+        type: str,
+        page: typing.Optional[int] = None,
+        format: typing.Optional[str] = None,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> DnsReverseResponse:
+        """
+        Get Reverse DNS info for a DNS record
+
+        Parameters
+        ----------
+        api_key : str
+
+        value : str
+
+        type : str
+
+        page : typing.Optional[int]
+
+        format : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        DnsReverseResponse
+
+        Examples
+        --------
+        from whoisfreaks import WhoisfreaksApi
+        from whoisfreaks.environment import WhoisfreaksApiEnvironment
+        client = WhoisfreaksApi(environment=WhoisfreaksApiEnvironment.PRODUCTION, )
+        client.dns.reverse_dns_lookup(api_key='YOUR_API_KEY', value='8.8.8.8', type='a', page=1, format='json', )
+        """
+        _response = self._raw_client.reverse_dns_lookup(
+            api_key=api_key, value=value, type=type, page=page, format=format, request_options=request_options
+        )
+        return _response.data
+
+    def bulk_dns_lookup(
+        self,
+        *,
+        api_key: str,
+        type: str,
+        format: typing.Optional[str] = None,
+        domain_names: typing.Optional[typing.Sequence[str]] = OMIT,
+        ip_addresses: typing.Optional[typing.Sequence[str]] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> BulkDnsResponse:
+        """
+        Get Bulk DNS information for multiple domains or IP addresses
+
+        Parameters
+        ----------
+        api_key : str
+
+        type : str
+
+        format : typing.Optional[str]
+
+        domain_names : typing.Optional[typing.Sequence[str]]
+
+        ip_addresses : typing.Optional[typing.Sequence[str]]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        BulkDnsResponse
+
+        Examples
+        --------
+        from whoisfreaks import WhoisfreaksApi
+        from whoisfreaks.environment import WhoisfreaksApiEnvironment
+        client = WhoisfreaksApi(environment=WhoisfreaksApiEnvironment.PRODUCTION, )
+        client.dns.bulk_dns_lookup(api_key='YOUR_API_KEY', type='all', format='json', domain_names=['whoisfreaks.com', 'jfreaks.com'], ip_addresses=['1.1.1.1', '8.8.8.8'], )
+        """
+        _response = self._raw_client.bulk_dns_lookup(
+            api_key=api_key,
+            type=type,
+            format=format,
+            domain_names=domain_names,
+            ip_addresses=ip_addresses,
+            request_options=request_options,
         )
         return _response.data
 
@@ -87,6 +325,7 @@ class AsyncDnsClient:
         type: str,
         domain_name: typing.Optional[str] = None,
         ip_address: typing.Optional[str] = None,
+        format: typing.Optional[str] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> DnsLiveResponse:
         """
@@ -101,6 +340,8 @@ class AsyncDnsClient:
         domain_name : typing.Optional[str]
 
         ip_address : typing.Optional[str]
+
+        format : typing.Optional[str]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -120,6 +361,250 @@ class AsyncDnsClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.live_dns_lookup(
-            api_key=api_key, type=type, domain_name=domain_name, ip_address=ip_address, request_options=request_options
+            api_key=api_key,
+            type=type,
+            domain_name=domain_name,
+            ip_address=ip_address,
+            format=format,
+            request_options=request_options,
+        )
+        return _response.data
+
+    async def ns_lookup(
+        self,
+        *,
+        api_key: str,
+        type: str,
+        domain_name: typing.Optional[str] = None,
+        format: typing.Optional[str] = None,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> DnsLiveResponse:
+        """
+        Get NS information for a domain
+
+        Parameters
+        ----------
+        api_key : str
+
+        type : str
+
+        domain_name : typing.Optional[str]
+
+        format : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        DnsLiveResponse
+
+        Examples
+        --------
+        from whoisfreaks import AsyncWhoisfreaksApi
+        from whoisfreaks.environment import WhoisfreaksApiEnvironment
+        import asyncio
+        client = AsyncWhoisfreaksApi(environment=WhoisfreaksApiEnvironment.PRODUCTION, )
+        async def main() -> None:
+            await client.dns.ns_lookup(api_key='YOUR_API_KEY', domain_name='google.com', type='ns', )
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.ns_lookup(
+            api_key=api_key, type=type, domain_name=domain_name, format=format, request_options=request_options
+        )
+        return _response.data
+
+    async def mx_lookup(
+        self,
+        *,
+        api_key: str,
+        type: str,
+        domain_name: typing.Optional[str] = None,
+        format: typing.Optional[str] = None,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> DnsLiveResponse:
+        """
+        Get MX information for a domain
+
+        Parameters
+        ----------
+        api_key : str
+
+        type : str
+
+        domain_name : typing.Optional[str]
+
+        format : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        DnsLiveResponse
+
+        Examples
+        --------
+        from whoisfreaks import AsyncWhoisfreaksApi
+        from whoisfreaks.environment import WhoisfreaksApiEnvironment
+        import asyncio
+        client = AsyncWhoisfreaksApi(environment=WhoisfreaksApiEnvironment.PRODUCTION, )
+        async def main() -> None:
+            await client.dns.mx_lookup(api_key='YOUR_API_KEY', domain_name='google.com', type='mx', )
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.mx_lookup(
+            api_key=api_key, type=type, domain_name=domain_name, format=format, request_options=request_options
+        )
+        return _response.data
+
+    async def historical_dns_lookup(
+        self,
+        *,
+        api_key: str,
+        domain_name: str,
+        type: str,
+        page: typing.Optional[int] = None,
+        format: typing.Optional[str] = None,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> DnsHistoricalResponse:
+        """
+        Get Historical DNS information for a domain
+
+        Parameters
+        ----------
+        api_key : str
+
+        domain_name : str
+
+        type : str
+
+        page : typing.Optional[int]
+
+        format : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        DnsHistoricalResponse
+
+        Examples
+        --------
+        from whoisfreaks import AsyncWhoisfreaksApi
+        from whoisfreaks.environment import WhoisfreaksApiEnvironment
+        import asyncio
+        client = AsyncWhoisfreaksApi(environment=WhoisfreaksApiEnvironment.PRODUCTION, )
+        async def main() -> None:
+            await client.dns.historical_dns_lookup(api_key='YOUR_API_KEY', domain_name='google.com', type='all', page=1, )
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.historical_dns_lookup(
+            api_key=api_key,
+            domain_name=domain_name,
+            type=type,
+            page=page,
+            format=format,
+            request_options=request_options,
+        )
+        return _response.data
+
+    async def reverse_dns_lookup(
+        self,
+        *,
+        api_key: str,
+        value: str,
+        type: str,
+        page: typing.Optional[int] = None,
+        format: typing.Optional[str] = None,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> DnsReverseResponse:
+        """
+        Get Reverse DNS info for a DNS record
+
+        Parameters
+        ----------
+        api_key : str
+
+        value : str
+
+        type : str
+
+        page : typing.Optional[int]
+
+        format : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        DnsReverseResponse
+
+        Examples
+        --------
+        from whoisfreaks import AsyncWhoisfreaksApi
+        from whoisfreaks.environment import WhoisfreaksApiEnvironment
+        import asyncio
+        client = AsyncWhoisfreaksApi(environment=WhoisfreaksApiEnvironment.PRODUCTION, )
+        async def main() -> None:
+            await client.dns.reverse_dns_lookup(api_key='YOUR_API_KEY', value='8.8.8.8', type='a', page=1, format='json', )
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.reverse_dns_lookup(
+            api_key=api_key, value=value, type=type, page=page, format=format, request_options=request_options
+        )
+        return _response.data
+
+    async def bulk_dns_lookup(
+        self,
+        *,
+        api_key: str,
+        type: str,
+        format: typing.Optional[str] = None,
+        domain_names: typing.Optional[typing.Sequence[str]] = OMIT,
+        ip_addresses: typing.Optional[typing.Sequence[str]] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> BulkDnsResponse:
+        """
+        Get Bulk DNS information for multiple domains or IP addresses
+
+        Parameters
+        ----------
+        api_key : str
+
+        type : str
+
+        format : typing.Optional[str]
+
+        domain_names : typing.Optional[typing.Sequence[str]]
+
+        ip_addresses : typing.Optional[typing.Sequence[str]]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        BulkDnsResponse
+
+        Examples
+        --------
+        from whoisfreaks import AsyncWhoisfreaksApi
+        from whoisfreaks.environment import WhoisfreaksApiEnvironment
+        import asyncio
+        client = AsyncWhoisfreaksApi(environment=WhoisfreaksApiEnvironment.PRODUCTION, )
+        async def main() -> None:
+            await client.dns.bulk_dns_lookup(api_key='YOUR_API_KEY', type='all', format='json', domain_names=['whoisfreaks.com', 'jfreaks.com'], ip_addresses=['1.1.1.1', '8.8.8.8'], )
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.bulk_dns_lookup(
+            api_key=api_key,
+            type=type,
+            format=format,
+            domain_names=domain_names,
+            ip_addresses=ip_addresses,
+            request_options=request_options,
         )
         return _response.data

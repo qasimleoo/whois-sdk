@@ -3,6 +3,11 @@
 # isort: skip_file
 
 from .types import (
+    AsBlock,
+    AsnContact,
+    AsnOrganization,
+    AsnWhoisResponse,
+    AutNum,
     Contact,
     DomainRegistrar,
     HistoricalRecord,
@@ -17,6 +22,11 @@ from .types import (
 )
 
 __all__ = [
+    "AsBlock",
+    "AsnContact",
+    "AsnOrganization",
+    "AsnWhoisResponse",
+    "AutNum",
     "Contact",
     "DomainRegistrar",
     "HistoricalRecord",

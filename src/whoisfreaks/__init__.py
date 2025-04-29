@@ -7,6 +7,11 @@ from .client import AsyncWhoisfreaksApi, WhoisfreaksApi
 from .environment import WhoisfreaksApiEnvironment
 from .version import __version__
 from .whois import (
+    AsBlock,
+    AsnContact,
+    AsnOrganization,
+    AsnWhoisResponse,
+    AutNum,
     Contact,
     DomainRegistrar,
     HistoricalRecord,
@@ -21,7 +26,12 @@ from .whois import (
 )
 
 __all__ = [
+    "AsBlock",
+    "AsnContact",
+    "AsnOrganization",
+    "AsnWhoisResponse",
     "AsyncWhoisfreaksApi",
+    "AutNum",
     "Contact",
     "DomainRegistrar",
     "HistoricalRecord",

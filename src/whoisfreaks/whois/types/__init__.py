@@ -2,6 +2,11 @@
 
 # isort: skip_file
 
+from .as_block import AsBlock
+from .asn_contact import AsnContact
+from .asn_organization import AsnOrganization
+from .asn_whois_response import AsnWhoisResponse
+from .aut_num import AutNum
 from .contact import Contact
 from .domain_registrar import DomainRegistrar
 from .historical_record import HistoricalRecord
@@ -15,6 +20,11 @@ from .status import Status
 from .whois_response import WhoisResponse
 
 __all__ = [
+    "AsBlock",
+    "AsnContact",
+    "AsnOrganization",
+    "AsnWhoisResponse",
+    "AutNum",
     "Contact",
     "DomainRegistrar",
     "HistoricalRecord",

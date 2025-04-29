@@ -29,7 +29,7 @@ class WhoisClient:
         """
         return self._raw_client
 
-    def get_live_whois(
+    def live_lookup(
         self, *, api_key: str, domain_name: str, whois: str, request_options: typing.Optional[RequestOptions] = None
     ) -> WhoisResponse:
         """
@@ -55,14 +55,14 @@ class WhoisClient:
         from whoisfreaks import WhoisfreaksApi
         from whoisfreaks.environment import WhoisfreaksApiEnvironment
         client = WhoisfreaksApi(environment=WhoisfreaksApiEnvironment.PRODUCTION, )
-        client.whois.get_live_whois(api_key='YOUR_API_KEY', domain_name='888starzci.ci', whois='live', )
+        client.whois.live_lookup(api_key='YOUR_API_KEY', domain_name='888starzci.ci', whois='live', )
         """
-        _response = self._raw_client.get_live_whois(
+        _response = self._raw_client.live_lookup(
             api_key=api_key, domain_name=domain_name, whois=whois, request_options=request_options
         )
         return _response.data
 
-    def get_historical_whois(
+    def historical_lookup(
         self,
         *,
         api_key: str,
@@ -99,9 +99,9 @@ class WhoisClient:
         from whoisfreaks import WhoisfreaksApi
         from whoisfreaks.environment import WhoisfreaksApiEnvironment
         client = WhoisfreaksApi(environment=WhoisfreaksApiEnvironment.PRODUCTION, )
-        client.whois.get_historical_whois(api_key='YOUR_API_KEY', domain_name='whoisfreaks.com', whois='historical', )
+        client.whois.historical_lookup(api_key='YOUR_API_KEY', domain_name='whoisfreaks.com', whois='historical', )
         """
-        _response = self._raw_client.get_historical_whois(
+        _response = self._raw_client.historical_lookup(
             api_key=api_key,
             domain_name=domain_name,
             whois=whois,
@@ -111,7 +111,7 @@ class WhoisClient:
         )
         return _response.data
 
-    def get_reverse_whois(
+    def reverse_lookup(
         self,
         *,
         api_key: str,
@@ -166,9 +166,9 @@ class WhoisClient:
         from whoisfreaks import WhoisfreaksApi
         from whoisfreaks.environment import WhoisfreaksApiEnvironment
         client = WhoisfreaksApi(environment=WhoisfreaksApiEnvironment.PRODUCTION, )
-        client.whois.get_reverse_whois(api_key='YOUR_API_KEY', whois='reverse', keyword='google', )
+        client.whois.reverse_lookup(api_key='YOUR_API_KEY', whois='reverse', keyword='google', )
         """
-        _response = self._raw_client.get_reverse_whois(
+        _response = self._raw_client.reverse_lookup(
             api_key=api_key,
             whois=whois,
             keyword=keyword,
@@ -184,7 +184,7 @@ class WhoisClient:
         )
         return _response.data
 
-    def get_ip_whois(
+    def ip_whois_lookup(
         self,
         *,
         api_key: str,
@@ -215,14 +215,14 @@ class WhoisClient:
         from whoisfreaks import WhoisfreaksApi
         from whoisfreaks.environment import WhoisfreaksApiEnvironment
         client = WhoisfreaksApi(environment=WhoisfreaksApiEnvironment.PRODUCTION, )
-        client.whois.get_ip_whois(api_key='YOUR_API_KEY', ip='8.8.8.8', )
+        client.whois.ip_whois_lookup(api_key='YOUR_API_KEY', ip='8.8.8.8', )
         """
-        _response = self._raw_client.get_ip_whois(
+        _response = self._raw_client.ip_whois_lookup(
             api_key=api_key, ip=ip, format=format, request_options=request_options
         )
         return _response.data
 
-    def get_asn_whois(
+    def asn_whois_lookup(
         self,
         *,
         api_key: str,
@@ -253,14 +253,14 @@ class WhoisClient:
         from whoisfreaks import WhoisfreaksApi
         from whoisfreaks.environment import WhoisfreaksApiEnvironment
         client = WhoisfreaksApi(environment=WhoisfreaksApiEnvironment.PRODUCTION, )
-        client.whois.get_asn_whois(api_key='YOUR_API_KEY', asn='1', )
+        client.whois.asn_whois_lookup(api_key='YOUR_API_KEY', asn='1', )
         """
-        _response = self._raw_client.get_asn_whois(
+        _response = self._raw_client.asn_whois_lookup(
             api_key=api_key, asn=asn, format=format, request_options=request_options
         )
         return _response.data
 
-    def get_bulk_whois(
+    def bulk_domain_lookup(
         self,
         *,
         api_key: str,
@@ -291,9 +291,9 @@ class WhoisClient:
         from whoisfreaks import WhoisfreaksApi
         from whoisfreaks.environment import WhoisfreaksApiEnvironment
         client = WhoisfreaksApi(environment=WhoisfreaksApiEnvironment.PRODUCTION, )
-        client.whois.get_bulk_whois(api_key='YOUR_API_KEY', format='json', domain_names=['whoisfreaks.com', 'jfreaks.com'], )
+        client.whois.bulk_domain_lookup(api_key='YOUR_API_KEY', format='json', domain_names=['whoisfreaks.com', 'jfreaks.com'], )
         """
-        _response = self._raw_client.get_bulk_whois(
+        _response = self._raw_client.bulk_domain_lookup(
             api_key=api_key, domain_names=domain_names, format=format, request_options=request_options
         )
         return _response.data
@@ -314,7 +314,7 @@ class AsyncWhoisClient:
         """
         return self._raw_client
 
-    async def get_live_whois(
+    async def live_lookup(
         self, *, api_key: str, domain_name: str, whois: str, request_options: typing.Optional[RequestOptions] = None
     ) -> WhoisResponse:
         """
@@ -342,15 +342,15 @@ class AsyncWhoisClient:
         import asyncio
         client = AsyncWhoisfreaksApi(environment=WhoisfreaksApiEnvironment.PRODUCTION, )
         async def main() -> None:
-            await client.whois.get_live_whois(api_key='YOUR_API_KEY', domain_name='888starzci.ci', whois='live', )
+            await client.whois.live_lookup(api_key='YOUR_API_KEY', domain_name='888starzci.ci', whois='live', )
         asyncio.run(main())
         """
-        _response = await self._raw_client.get_live_whois(
+        _response = await self._raw_client.live_lookup(
             api_key=api_key, domain_name=domain_name, whois=whois, request_options=request_options
         )
         return _response.data
 
-    async def get_historical_whois(
+    async def historical_lookup(
         self,
         *,
         api_key: str,
@@ -389,10 +389,10 @@ class AsyncWhoisClient:
         import asyncio
         client = AsyncWhoisfreaksApi(environment=WhoisfreaksApiEnvironment.PRODUCTION, )
         async def main() -> None:
-            await client.whois.get_historical_whois(api_key='YOUR_API_KEY', domain_name='whoisfreaks.com', whois='historical', )
+            await client.whois.historical_lookup(api_key='YOUR_API_KEY', domain_name='whoisfreaks.com', whois='historical', )
         asyncio.run(main())
         """
-        _response = await self._raw_client.get_historical_whois(
+        _response = await self._raw_client.historical_lookup(
             api_key=api_key,
             domain_name=domain_name,
             whois=whois,
@@ -402,7 +402,7 @@ class AsyncWhoisClient:
         )
         return _response.data
 
-    async def get_reverse_whois(
+    async def reverse_lookup(
         self,
         *,
         api_key: str,
@@ -459,10 +459,10 @@ class AsyncWhoisClient:
         import asyncio
         client = AsyncWhoisfreaksApi(environment=WhoisfreaksApiEnvironment.PRODUCTION, )
         async def main() -> None:
-            await client.whois.get_reverse_whois(api_key='YOUR_API_KEY', whois='reverse', keyword='google', )
+            await client.whois.reverse_lookup(api_key='YOUR_API_KEY', whois='reverse', keyword='google', )
         asyncio.run(main())
         """
-        _response = await self._raw_client.get_reverse_whois(
+        _response = await self._raw_client.reverse_lookup(
             api_key=api_key,
             whois=whois,
             keyword=keyword,
@@ -478,7 +478,7 @@ class AsyncWhoisClient:
         )
         return _response.data
 
-    async def get_ip_whois(
+    async def ip_whois_lookup(
         self,
         *,
         api_key: str,
@@ -511,15 +511,15 @@ class AsyncWhoisClient:
         import asyncio
         client = AsyncWhoisfreaksApi(environment=WhoisfreaksApiEnvironment.PRODUCTION, )
         async def main() -> None:
-            await client.whois.get_ip_whois(api_key='YOUR_API_KEY', ip='8.8.8.8', )
+            await client.whois.ip_whois_lookup(api_key='YOUR_API_KEY', ip='8.8.8.8', )
         asyncio.run(main())
         """
-        _response = await self._raw_client.get_ip_whois(
+        _response = await self._raw_client.ip_whois_lookup(
             api_key=api_key, ip=ip, format=format, request_options=request_options
         )
         return _response.data
 
-    async def get_asn_whois(
+    async def asn_whois_lookup(
         self,
         *,
         api_key: str,
@@ -552,15 +552,15 @@ class AsyncWhoisClient:
         import asyncio
         client = AsyncWhoisfreaksApi(environment=WhoisfreaksApiEnvironment.PRODUCTION, )
         async def main() -> None:
-            await client.whois.get_asn_whois(api_key='YOUR_API_KEY', asn='1', )
+            await client.whois.asn_whois_lookup(api_key='YOUR_API_KEY', asn='1', )
         asyncio.run(main())
         """
-        _response = await self._raw_client.get_asn_whois(
+        _response = await self._raw_client.asn_whois_lookup(
             api_key=api_key, asn=asn, format=format, request_options=request_options
         )
         return _response.data
 
-    async def get_bulk_whois(
+    async def bulk_domain_lookup(
         self,
         *,
         api_key: str,
@@ -593,10 +593,10 @@ class AsyncWhoisClient:
         import asyncio
         client = AsyncWhoisfreaksApi(environment=WhoisfreaksApiEnvironment.PRODUCTION, )
         async def main() -> None:
-            await client.whois.get_bulk_whois(api_key='YOUR_API_KEY', format='json', domain_names=['whoisfreaks.com', 'jfreaks.com'], )
+            await client.whois.bulk_domain_lookup(api_key='YOUR_API_KEY', format='json', domain_names=['whoisfreaks.com', 'jfreaks.com'], )
         asyncio.run(main())
         """
-        _response = await self._raw_client.get_bulk_whois(
+        _response = await self._raw_client.bulk_domain_lookup(
             api_key=api_key, domain_names=domain_names, format=format, request_options=request_options
         )
         return _response.data

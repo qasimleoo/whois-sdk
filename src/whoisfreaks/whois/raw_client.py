@@ -21,7 +21,7 @@ class RawWhoisClient:
     def __init__(self, *, client_wrapper: SyncClientWrapper):
         self._client_wrapper = client_wrapper
 
-    def get_live_whois(
+    def live_lookup(
         self, *, api_key: str, domain_name: str, whois: str, request_options: typing.Optional[RequestOptions] = None
     ) -> HttpResponse[WhoisResponse]:
         """
@@ -67,7 +67,7 @@ class RawWhoisClient:
             return HttpResponse(response=_response, data=_data)
         raise ApiError(headers=dict(_response.headers), status_code=_response.status_code, body=_response_json)
 
-    def get_historical_whois(
+    def historical_lookup(
         self,
         *,
         api_key: str,
@@ -126,7 +126,7 @@ class RawWhoisClient:
             return HttpResponse(response=_response, data=_data)
         raise ApiError(headers=dict(_response.headers), status_code=_response.status_code, body=_response_json)
 
-    def get_reverse_whois(
+    def reverse_lookup(
         self,
         *,
         api_key: str,
@@ -209,7 +209,7 @@ class RawWhoisClient:
             return HttpResponse(response=_response, data=_data)
         raise ApiError(headers=dict(_response.headers), status_code=_response.status_code, body=_response_json)
 
-    def get_ip_whois(
+    def ip_whois_lookup(
         self,
         *,
         api_key: str,
@@ -260,7 +260,7 @@ class RawWhoisClient:
             return HttpResponse(response=_response, data=_data)
         raise ApiError(headers=dict(_response.headers), status_code=_response.status_code, body=_response_json)
 
-    def get_asn_whois(
+    def asn_whois_lookup(
         self,
         *,
         api_key: str,
@@ -311,7 +311,7 @@ class RawWhoisClient:
             return HttpResponse(response=_response, data=_data)
         raise ApiError(headers=dict(_response.headers), status_code=_response.status_code, body=_response_json)
 
-    def get_bulk_whois(
+    def bulk_domain_lookup(
         self,
         *,
         api_key: str,
@@ -370,7 +370,7 @@ class AsyncRawWhoisClient:
     def __init__(self, *, client_wrapper: AsyncClientWrapper):
         self._client_wrapper = client_wrapper
 
-    async def get_live_whois(
+    async def live_lookup(
         self, *, api_key: str, domain_name: str, whois: str, request_options: typing.Optional[RequestOptions] = None
     ) -> AsyncHttpResponse[WhoisResponse]:
         """
@@ -416,7 +416,7 @@ class AsyncRawWhoisClient:
             return AsyncHttpResponse(response=_response, data=_data)
         raise ApiError(headers=dict(_response.headers), status_code=_response.status_code, body=_response_json)
 
-    async def get_historical_whois(
+    async def historical_lookup(
         self,
         *,
         api_key: str,
@@ -475,7 +475,7 @@ class AsyncRawWhoisClient:
             return AsyncHttpResponse(response=_response, data=_data)
         raise ApiError(headers=dict(_response.headers), status_code=_response.status_code, body=_response_json)
 
-    async def get_reverse_whois(
+    async def reverse_lookup(
         self,
         *,
         api_key: str,
@@ -558,7 +558,7 @@ class AsyncRawWhoisClient:
             return AsyncHttpResponse(response=_response, data=_data)
         raise ApiError(headers=dict(_response.headers), status_code=_response.status_code, body=_response_json)
 
-    async def get_ip_whois(
+    async def ip_whois_lookup(
         self,
         *,
         api_key: str,
@@ -609,7 +609,7 @@ class AsyncRawWhoisClient:
             return AsyncHttpResponse(response=_response, data=_data)
         raise ApiError(headers=dict(_response.headers), status_code=_response.status_code, body=_response_json)
 
-    async def get_asn_whois(
+    async def asn_whois_lookup(
         self,
         *,
         api_key: str,
@@ -660,7 +660,7 @@ class AsyncRawWhoisClient:
             return AsyncHttpResponse(response=_response, data=_data)
         raise ApiError(headers=dict(_response.headers), status_code=_response.status_code, body=_response_json)
 
-    async def get_bulk_whois(
+    async def bulk_domain_lookup(
         self,
         *,
         api_key: str,

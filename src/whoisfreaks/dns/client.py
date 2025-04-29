@@ -27,9 +27,9 @@ class DnsClient:
         self,
         *,
         api_key: str,
+        type: str,
         domain_name: typing.Optional[str] = None,
         ip_address: typing.Optional[str] = None,
-        type: typing.Optional[str] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> DnsLiveResponse:
         """
@@ -39,11 +39,11 @@ class DnsClient:
         ----------
         api_key : str
 
+        type : str
+
         domain_name : typing.Optional[str]
 
         ip_address : typing.Optional[str]
-
-        type : typing.Optional[str]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -60,7 +60,7 @@ class DnsClient:
         client.dns.live_dns_lookup(api_key='YOUR_API_KEY', domain_name='google.com', type='all', )
         """
         _response = self._raw_client.live_dns_lookup(
-            api_key=api_key, domain_name=domain_name, ip_address=ip_address, type=type, request_options=request_options
+            api_key=api_key, type=type, domain_name=domain_name, ip_address=ip_address, request_options=request_options
         )
         return _response.data
 
@@ -84,9 +84,9 @@ class AsyncDnsClient:
         self,
         *,
         api_key: str,
+        type: str,
         domain_name: typing.Optional[str] = None,
         ip_address: typing.Optional[str] = None,
-        type: typing.Optional[str] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> DnsLiveResponse:
         """
@@ -96,11 +96,11 @@ class AsyncDnsClient:
         ----------
         api_key : str
 
+        type : str
+
         domain_name : typing.Optional[str]
 
         ip_address : typing.Optional[str]
-
-        type : typing.Optional[str]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -120,6 +120,6 @@ class AsyncDnsClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.live_dns_lookup(
-            api_key=api_key, domain_name=domain_name, ip_address=ip_address, type=type, request_options=request_options
+            api_key=api_key, type=type, domain_name=domain_name, ip_address=ip_address, request_options=request_options
         )
         return _response.data

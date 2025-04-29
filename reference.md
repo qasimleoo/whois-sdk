@@ -54,6 +54,14 @@ client.dns.live_dns_lookup(api_key='YOUR_API_KEY', domain_name='google.com', typ
 <dl>
 <dd>
 
+**type:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **domain_name:** `typing.Optional[str]` 
     
 </dd>
@@ -63,14 +71,6 @@ client.dns.live_dns_lookup(api_key='YOUR_API_KEY', domain_name='google.com', typ
 <dd>
 
 **ip_address:** `typing.Optional[str]` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**type:** `typing.Optional[str]` 
     
 </dd>
 </dl>
@@ -91,7 +91,7 @@ client.dns.live_dns_lookup(api_key='YOUR_API_KEY', domain_name='google.com', typ
 </details>
 
 ## Whois
-<details><summary><code>client.whois.<a href="src/whoisfreaks/whois/client.py">get_live_whois</a>(...)</code></summary>
+<details><summary><code>client.whois.<a href="src/whoisfreaks/whois/client.py">live_lookup</a>(...)</code></summary>
 <dl>
 <dd>
 
@@ -121,7 +121,7 @@ Get live WHOIS information for a domain
 from whoisfreaks import WhoisfreaksApi
 from whoisfreaks.environment import WhoisfreaksApiEnvironment
 client = WhoisfreaksApi(environment=WhoisfreaksApiEnvironment.PRODUCTION, )
-client.whois.get_live_whois(api_key='YOUR_API_KEY', domain_name='888starzci.ci', whois='live', )
+client.whois.live_lookup(api_key='YOUR_API_KEY', domain_name='888starzci.ci', whois='live', )
 
 ```
 </dd>
@@ -173,7 +173,7 @@ client.whois.get_live_whois(api_key='YOUR_API_KEY', domain_name='888starzci.ci',
 </dl>
 </details>
 
-<details><summary><code>client.whois.<a href="src/whoisfreaks/whois/client.py">get_historical_whois</a>(...)</code></summary>
+<details><summary><code>client.whois.<a href="src/whoisfreaks/whois/client.py">historical_lookup</a>(...)</code></summary>
 <dl>
 <dd>
 
@@ -203,7 +203,7 @@ Get historical WHOIS records for a domain
 from whoisfreaks import WhoisfreaksApi
 from whoisfreaks.environment import WhoisfreaksApiEnvironment
 client = WhoisfreaksApi(environment=WhoisfreaksApiEnvironment.PRODUCTION, )
-client.whois.get_historical_whois(api_key='YOUR_API_KEY', domain_name='whoisfreaks.com', whois='historical', )
+client.whois.historical_lookup(api_key='YOUR_API_KEY', domain_name='whoisfreaks.com', whois='historical', )
 
 ```
 </dd>
@@ -271,7 +271,7 @@ client.whois.get_historical_whois(api_key='YOUR_API_KEY', domain_name='whoisfrea
 </dl>
 </details>
 
-<details><summary><code>client.whois.<a href="src/whoisfreaks/whois/client.py">get_reverse_whois</a>(...)</code></summary>
+<details><summary><code>client.whois.<a href="src/whoisfreaks/whois/client.py">reverse_lookup</a>(...)</code></summary>
 <dl>
 <dd>
 
@@ -301,7 +301,7 @@ Perform a reverse WHOIS lookup based on registrant information
 from whoisfreaks import WhoisfreaksApi
 from whoisfreaks.environment import WhoisfreaksApiEnvironment
 client = WhoisfreaksApi(environment=WhoisfreaksApiEnvironment.PRODUCTION, )
-client.whois.get_reverse_whois(api_key='YOUR_API_KEY', whois='reverse', keyword='google', )
+client.whois.reverse_lookup(api_key='YOUR_API_KEY', whois='reverse', keyword='google', )
 
 ```
 </dd>
@@ -417,7 +417,7 @@ client.whois.get_reverse_whois(api_key='YOUR_API_KEY', whois='reverse', keyword=
 </dl>
 </details>
 
-<details><summary><code>client.whois.<a href="src/whoisfreaks/whois/client.py">get_ip_whois</a>(...)</code></summary>
+<details><summary><code>client.whois.<a href="src/whoisfreaks/whois/client.py">ip_whois_lookup</a>(...)</code></summary>
 <dl>
 <dd>
 
@@ -447,7 +447,7 @@ Get WHOIS information for an IP
 from whoisfreaks import WhoisfreaksApi
 from whoisfreaks.environment import WhoisfreaksApiEnvironment
 client = WhoisfreaksApi(environment=WhoisfreaksApiEnvironment.PRODUCTION, )
-client.whois.get_ip_whois(api_key='YOUR_API_KEY', ip='8.8.8.8', )
+client.whois.ip_whois_lookup(api_key='YOUR_API_KEY', ip='8.8.8.8', )
 
 ```
 </dd>
@@ -499,7 +499,7 @@ client.whois.get_ip_whois(api_key='YOUR_API_KEY', ip='8.8.8.8', )
 </dl>
 </details>
 
-<details><summary><code>client.whois.<a href="src/whoisfreaks/whois/client.py">get_asn_whois</a>(...)</code></summary>
+<details><summary><code>client.whois.<a href="src/whoisfreaks/whois/client.py">asn_whois_lookup</a>(...)</code></summary>
 <dl>
 <dd>
 
@@ -529,7 +529,7 @@ Get WHOIS information for an ASN
 from whoisfreaks import WhoisfreaksApi
 from whoisfreaks.environment import WhoisfreaksApiEnvironment
 client = WhoisfreaksApi(environment=WhoisfreaksApiEnvironment.PRODUCTION, )
-client.whois.get_asn_whois(api_key='YOUR_API_KEY', asn='1', )
+client.whois.asn_whois_lookup(api_key='YOUR_API_KEY', asn='1', )
 
 ```
 </dd>
@@ -581,7 +581,7 @@ client.whois.get_asn_whois(api_key='YOUR_API_KEY', asn='1', )
 </dl>
 </details>
 
-<details><summary><code>client.whois.<a href="src/whoisfreaks/whois/client.py">get_bulk_whois</a>(...)</code></summary>
+<details><summary><code>client.whois.<a href="src/whoisfreaks/whois/client.py">bulk_domain_lookup</a>(...)</code></summary>
 <dl>
 <dd>
 
@@ -611,7 +611,7 @@ Get Live WHOIS information for more than one domain names
 from whoisfreaks import WhoisfreaksApi
 from whoisfreaks.environment import WhoisfreaksApiEnvironment
 client = WhoisfreaksApi(environment=WhoisfreaksApiEnvironment.PRODUCTION, )
-client.whois.get_bulk_whois(api_key='YOUR_API_KEY', format='json', domain_names=['whoisfreaks.com', 'jfreaks.com'], )
+client.whois.bulk_domain_lookup(api_key='YOUR_API_KEY', format='json', domain_names=['whoisfreaks.com', 'jfreaks.com'], )
 
 ```
 </dd>

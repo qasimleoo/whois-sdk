@@ -19,9 +19,9 @@ class RawDnsClient:
         self,
         *,
         api_key: str,
+        type: str,
         domain_name: typing.Optional[str] = None,
         ip_address: typing.Optional[str] = None,
-        type: typing.Optional[str] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[DnsLiveResponse]:
         """
@@ -31,11 +31,11 @@ class RawDnsClient:
         ----------
         api_key : str
 
+        type : str
+
         domain_name : typing.Optional[str]
 
         ip_address : typing.Optional[str]
-
-        type : typing.Optional[str]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -79,9 +79,9 @@ class AsyncRawDnsClient:
         self,
         *,
         api_key: str,
+        type: str,
         domain_name: typing.Optional[str] = None,
         ip_address: typing.Optional[str] = None,
-        type: typing.Optional[str] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[DnsLiveResponse]:
         """
@@ -91,11 +91,11 @@ class AsyncRawDnsClient:
         ----------
         api_key : str
 
+        type : str
+
         domain_name : typing.Optional[str]
 
         ip_address : typing.Optional[str]
-
-        type : typing.Optional[str]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.

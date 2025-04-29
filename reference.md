@@ -1,6 +1,6 @@
 # Reference
 ## Whois
-<details><summary><code>client.whois.<a href="src/whoisfreaks/whois/client.py">get_whois</a>(...)</code></summary>
+<details><summary><code>client.whois.<a href="src/whoisfreaks/whois/client.py">get_live_whois</a>(...)</code></summary>
 <dl>
 <dd>
 
@@ -12,7 +12,7 @@
 <dl>
 <dd>
 
-Get WHOIS information for a domain (live, historical or reverse)
+Get live WHOIS information for a domain
 </dd>
 </dl>
 </dd>
@@ -30,7 +30,187 @@ Get WHOIS information for a domain (live, historical or reverse)
 from whoisfreaks import WhoisfreaksApi
 from whoisfreaks.environment import WhoisfreaksApiEnvironment
 client = WhoisfreaksApi(environment=WhoisfreaksApiEnvironment.PRODUCTION, )
-client.whois.get_whois(api_key='YOUR_API_KEY', whois='reverse', keyword='google', email='google@gmail.com', owner='markmonitor', company='google', mode='mini', exact='true', format='xml', includes='billing', page='3', )
+client.whois.get_live_whois(api_key='YOUR_API_KEY', domain_name='888starzci.ci', whois='live', )
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**api_key:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**domain_name:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**whois:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.whois.<a href="src/whoisfreaks/whois/client.py">get_historical_whois</a>(...)</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Get historical WHOIS records for a domain
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from whoisfreaks import WhoisfreaksApi
+from whoisfreaks.environment import WhoisfreaksApiEnvironment
+client = WhoisfreaksApi(environment=WhoisfreaksApiEnvironment.PRODUCTION, )
+client.whois.get_historical_whois(api_key='YOUR_API_KEY', domain_name='whoisfreaks.com', whois='historical', )
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**api_key:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**domain_name:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**whois:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**page:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**format:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.whois.<a href="src/whoisfreaks/whois/client.py">get_reverse_whois</a>(...)</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Perform a reverse WHOIS lookup based on registrant information
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from whoisfreaks import WhoisfreaksApi
+from whoisfreaks.environment import WhoisfreaksApiEnvironment
+client = WhoisfreaksApi(environment=WhoisfreaksApiEnvironment.PRODUCTION, )
+client.whois.get_reverse_whois(api_key='YOUR_API_KEY', whois='reverse', keyword='google', )
 
 ```
 </dd>
@@ -55,14 +235,6 @@ client.whois.get_whois(api_key='YOUR_API_KEY', whois='reverse', keyword='google'
 <dd>
 
 **whois:** `str` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**domain_name:** `typing.Optional[str]` 
     
 </dd>
 </dl>

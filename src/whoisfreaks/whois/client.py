@@ -29,12 +29,93 @@ class WhoisClient:
         """
         return self._raw_client
 
-    def get_whois(
+    def get_live_whois(
+        self, *, api_key: str, domain_name: str, whois: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> WhoisResponse:
+        """
+        Get live WHOIS information for a domain
+
+        Parameters
+        ----------
+        api_key : str
+
+        domain_name : str
+
+        whois : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        WhoisResponse
+
+        Examples
+        --------
+        from whoisfreaks import WhoisfreaksApi
+        from whoisfreaks.environment import WhoisfreaksApiEnvironment
+        client = WhoisfreaksApi(environment=WhoisfreaksApiEnvironment.PRODUCTION, )
+        client.whois.get_live_whois(api_key='YOUR_API_KEY', domain_name='888starzci.ci', whois='live', )
+        """
+        _response = self._raw_client.get_live_whois(
+            api_key=api_key, domain_name=domain_name, whois=whois, request_options=request_options
+        )
+        return _response.data
+
+    def get_historical_whois(
+        self,
+        *,
+        api_key: str,
+        domain_name: str,
+        whois: str,
+        page: typing.Optional[str] = None,
+        format: typing.Optional[str] = None,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> WhoisResponse:
+        """
+        Get historical WHOIS records for a domain
+
+        Parameters
+        ----------
+        api_key : str
+
+        domain_name : str
+
+        whois : str
+
+        page : typing.Optional[str]
+
+        format : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        WhoisResponse
+
+        Examples
+        --------
+        from whoisfreaks import WhoisfreaksApi
+        from whoisfreaks.environment import WhoisfreaksApiEnvironment
+        client = WhoisfreaksApi(environment=WhoisfreaksApiEnvironment.PRODUCTION, )
+        client.whois.get_historical_whois(api_key='YOUR_API_KEY', domain_name='whoisfreaks.com', whois='historical', )
+        """
+        _response = self._raw_client.get_historical_whois(
+            api_key=api_key,
+            domain_name=domain_name,
+            whois=whois,
+            page=page,
+            format=format,
+            request_options=request_options,
+        )
+        return _response.data
+
+    def get_reverse_whois(
         self,
         *,
         api_key: str,
         whois: str,
-        domain_name: typing.Optional[str] = None,
         keyword: typing.Optional[str] = None,
         email: typing.Optional[str] = None,
         owner: typing.Optional[str] = None,
@@ -47,15 +128,13 @@ class WhoisClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> WhoisResponse:
         """
-        Get WHOIS information for a domain (live, historical or reverse)
+        Perform a reverse WHOIS lookup based on registrant information
 
         Parameters
         ----------
         api_key : str
 
         whois : str
-
-        domain_name : typing.Optional[str]
 
         keyword : typing.Optional[str]
 
@@ -87,12 +166,11 @@ class WhoisClient:
         from whoisfreaks import WhoisfreaksApi
         from whoisfreaks.environment import WhoisfreaksApiEnvironment
         client = WhoisfreaksApi(environment=WhoisfreaksApiEnvironment.PRODUCTION, )
-        client.whois.get_whois(api_key='YOUR_API_KEY', domain_name='888starzci.ci', whois='live', )
+        client.whois.get_reverse_whois(api_key='YOUR_API_KEY', whois='reverse', keyword='google', )
         """
-        _response = self._raw_client.get_whois(
+        _response = self._raw_client.get_reverse_whois(
             api_key=api_key,
             whois=whois,
-            domain_name=domain_name,
             keyword=keyword,
             email=email,
             owner=owner,
@@ -236,12 +314,99 @@ class AsyncWhoisClient:
         """
         return self._raw_client
 
-    async def get_whois(
+    async def get_live_whois(
+        self, *, api_key: str, domain_name: str, whois: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> WhoisResponse:
+        """
+        Get live WHOIS information for a domain
+
+        Parameters
+        ----------
+        api_key : str
+
+        domain_name : str
+
+        whois : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        WhoisResponse
+
+        Examples
+        --------
+        from whoisfreaks import AsyncWhoisfreaksApi
+        from whoisfreaks.environment import WhoisfreaksApiEnvironment
+        import asyncio
+        client = AsyncWhoisfreaksApi(environment=WhoisfreaksApiEnvironment.PRODUCTION, )
+        async def main() -> None:
+            await client.whois.get_live_whois(api_key='YOUR_API_KEY', domain_name='888starzci.ci', whois='live', )
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.get_live_whois(
+            api_key=api_key, domain_name=domain_name, whois=whois, request_options=request_options
+        )
+        return _response.data
+
+    async def get_historical_whois(
+        self,
+        *,
+        api_key: str,
+        domain_name: str,
+        whois: str,
+        page: typing.Optional[str] = None,
+        format: typing.Optional[str] = None,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> WhoisResponse:
+        """
+        Get historical WHOIS records for a domain
+
+        Parameters
+        ----------
+        api_key : str
+
+        domain_name : str
+
+        whois : str
+
+        page : typing.Optional[str]
+
+        format : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        WhoisResponse
+
+        Examples
+        --------
+        from whoisfreaks import AsyncWhoisfreaksApi
+        from whoisfreaks.environment import WhoisfreaksApiEnvironment
+        import asyncio
+        client = AsyncWhoisfreaksApi(environment=WhoisfreaksApiEnvironment.PRODUCTION, )
+        async def main() -> None:
+            await client.whois.get_historical_whois(api_key='YOUR_API_KEY', domain_name='whoisfreaks.com', whois='historical', )
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.get_historical_whois(
+            api_key=api_key,
+            domain_name=domain_name,
+            whois=whois,
+            page=page,
+            format=format,
+            request_options=request_options,
+        )
+        return _response.data
+
+    async def get_reverse_whois(
         self,
         *,
         api_key: str,
         whois: str,
-        domain_name: typing.Optional[str] = None,
         keyword: typing.Optional[str] = None,
         email: typing.Optional[str] = None,
         owner: typing.Optional[str] = None,
@@ -254,15 +419,13 @@ class AsyncWhoisClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> WhoisResponse:
         """
-        Get WHOIS information for a domain (live, historical or reverse)
+        Perform a reverse WHOIS lookup based on registrant information
 
         Parameters
         ----------
         api_key : str
 
         whois : str
-
-        domain_name : typing.Optional[str]
 
         keyword : typing.Optional[str]
 
@@ -296,13 +459,12 @@ class AsyncWhoisClient:
         import asyncio
         client = AsyncWhoisfreaksApi(environment=WhoisfreaksApiEnvironment.PRODUCTION, )
         async def main() -> None:
-            await client.whois.get_whois(api_key='YOUR_API_KEY', domain_name='888starzci.ci', whois='live', )
+            await client.whois.get_reverse_whois(api_key='YOUR_API_KEY', whois='reverse', keyword='google', )
         asyncio.run(main())
         """
-        _response = await self._raw_client.get_whois(
+        _response = await self._raw_client.get_reverse_whois(
             api_key=api_key,
             whois=whois,
-            domain_name=domain_name,
             keyword=keyword,
             email=email,
             owner=owner,

@@ -21,12 +21,116 @@ class RawWhoisClient:
     def __init__(self, *, client_wrapper: SyncClientWrapper):
         self._client_wrapper = client_wrapper
 
-    def get_whois(
+    def get_live_whois(
+        self, *, api_key: str, domain_name: str, whois: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> HttpResponse[WhoisResponse]:
+        """
+        Get live WHOIS information for a domain
+
+        Parameters
+        ----------
+        api_key : str
+
+        domain_name : str
+
+        whois : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        HttpResponse[WhoisResponse]
+        """
+        _response = self._client_wrapper.httpx_client.request(
+            "whois",
+            method="GET",
+            params={
+                "apiKey": api_key,
+                "domainName": domain_name,
+                "whois": whois,
+            },
+            request_options=request_options,
+        )
+        try:
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(headers=dict(_response.headers), status_code=_response.status_code, body=_response.text)
+        if 200 <= _response.status_code < 300:
+            _data = typing.cast(
+                WhoisResponse,
+                parse_obj_as(
+                    type_=WhoisResponse,  # type: ignore
+                    object_=_response_json,
+                ),
+            )
+            return HttpResponse(response=_response, data=_data)
+        raise ApiError(headers=dict(_response.headers), status_code=_response.status_code, body=_response_json)
+
+    def get_historical_whois(
+        self,
+        *,
+        api_key: str,
+        domain_name: str,
+        whois: str,
+        page: typing.Optional[str] = None,
+        format: typing.Optional[str] = None,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> HttpResponse[WhoisResponse]:
+        """
+        Get historical WHOIS records for a domain
+
+        Parameters
+        ----------
+        api_key : str
+
+        domain_name : str
+
+        whois : str
+
+        page : typing.Optional[str]
+
+        format : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        HttpResponse[WhoisResponse]
+        """
+        _response = self._client_wrapper.httpx_client.request(
+            "whois",
+            method="GET",
+            params={
+                "apiKey": api_key,
+                "domainName": domain_name,
+                "whois": whois,
+                "page": page,
+                "format": format,
+            },
+            request_options=request_options,
+        )
+        try:
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(headers=dict(_response.headers), status_code=_response.status_code, body=_response.text)
+        if 200 <= _response.status_code < 300:
+            _data = typing.cast(
+                WhoisResponse,
+                parse_obj_as(
+                    type_=WhoisResponse,  # type: ignore
+                    object_=_response_json,
+                ),
+            )
+            return HttpResponse(response=_response, data=_data)
+        raise ApiError(headers=dict(_response.headers), status_code=_response.status_code, body=_response_json)
+
+    def get_reverse_whois(
         self,
         *,
         api_key: str,
         whois: str,
-        domain_name: typing.Optional[str] = None,
         keyword: typing.Optional[str] = None,
         email: typing.Optional[str] = None,
         owner: typing.Optional[str] = None,
@@ -39,15 +143,13 @@ class RawWhoisClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[WhoisResponse]:
         """
-        Get WHOIS information for a domain (live, historical or reverse)
+        Perform a reverse WHOIS lookup based on registrant information
 
         Parameters
         ----------
         api_key : str
 
         whois : str
-
-        domain_name : typing.Optional[str]
 
         keyword : typing.Optional[str]
 
@@ -79,7 +181,6 @@ class RawWhoisClient:
             method="GET",
             params={
                 "apiKey": api_key,
-                "domainName": domain_name,
                 "whois": whois,
                 "keyword": keyword,
                 "email": email,
@@ -94,18 +195,18 @@ class RawWhoisClient:
             request_options=request_options,
         )
         try:
-            if 200 <= _response.status_code < 300:
-                _data = typing.cast(
-                    WhoisResponse,
-                    parse_obj_as(
-                        type_=WhoisResponse,  # type: ignore
-                        object_=_response.json(),
-                    ),
-                )
-                return HttpResponse(response=_response, data=_data)
             _response_json = _response.json()
         except JSONDecodeError:
             raise ApiError(headers=dict(_response.headers), status_code=_response.status_code, body=_response.text)
+        if 200 <= _response.status_code < 300:
+            _data = typing.cast(
+                WhoisResponse,
+                parse_obj_as(
+                    type_=WhoisResponse,  # type: ignore
+                    object_=_response_json,
+                ),
+            )
+            return HttpResponse(response=_response, data=_data)
         raise ApiError(headers=dict(_response.headers), status_code=_response.status_code, body=_response_json)
 
     def get_ip_whois(
@@ -145,18 +246,18 @@ class RawWhoisClient:
             request_options=request_options,
         )
         try:
-            if 200 <= _response.status_code < 300:
-                _data = typing.cast(
-                    IpWhoisResponse,
-                    parse_obj_as(
-                        type_=IpWhoisResponse,  # type: ignore
-                        object_=_response.json(),
-                    ),
-                )
-                return HttpResponse(response=_response, data=_data)
             _response_json = _response.json()
         except JSONDecodeError:
             raise ApiError(headers=dict(_response.headers), status_code=_response.status_code, body=_response.text)
+        if 200 <= _response.status_code < 300:
+            _data = typing.cast(
+                IpWhoisResponse,
+                parse_obj_as(
+                    type_=IpWhoisResponse,  # type: ignore
+                    object_=_response_json,
+                ),
+            )
+            return HttpResponse(response=_response, data=_data)
         raise ApiError(headers=dict(_response.headers), status_code=_response.status_code, body=_response_json)
 
     def get_asn_whois(
@@ -196,18 +297,18 @@ class RawWhoisClient:
             request_options=request_options,
         )
         try:
-            if 200 <= _response.status_code < 300:
-                _data = typing.cast(
-                    AsnWhoisResponse,
-                    parse_obj_as(
-                        type_=AsnWhoisResponse,  # type: ignore
-                        object_=_response.json(),
-                    ),
-                )
-                return HttpResponse(response=_response, data=_data)
             _response_json = _response.json()
         except JSONDecodeError:
             raise ApiError(headers=dict(_response.headers), status_code=_response.status_code, body=_response.text)
+        if 200 <= _response.status_code < 300:
+            _data = typing.cast(
+                AsnWhoisResponse,
+                parse_obj_as(
+                    type_=AsnWhoisResponse,  # type: ignore
+                    object_=_response_json,
+                ),
+            )
+            return HttpResponse(response=_response, data=_data)
         raise ApiError(headers=dict(_response.headers), status_code=_response.status_code, body=_response_json)
 
     def get_bulk_whois(
@@ -250,18 +351,18 @@ class RawWhoisClient:
             omit=OMIT,
         )
         try:
-            if 200 <= _response.status_code < 300:
-                _data = typing.cast(
-                    BulkWhoisResponse,
-                    parse_obj_as(
-                        type_=BulkWhoisResponse,  # type: ignore
-                        object_=_response.json(),
-                    ),
-                )
-                return HttpResponse(response=_response, data=_data)
             _response_json = _response.json()
         except JSONDecodeError:
             raise ApiError(headers=dict(_response.headers), status_code=_response.status_code, body=_response.text)
+        if 200 <= _response.status_code < 300:
+            _data = typing.cast(
+                BulkWhoisResponse,
+                parse_obj_as(
+                    type_=BulkWhoisResponse,  # type: ignore
+                    object_=_response_json,
+                ),
+            )
+            return HttpResponse(response=_response, data=_data)
         raise ApiError(headers=dict(_response.headers), status_code=_response.status_code, body=_response_json)
 
 
@@ -269,12 +370,116 @@ class AsyncRawWhoisClient:
     def __init__(self, *, client_wrapper: AsyncClientWrapper):
         self._client_wrapper = client_wrapper
 
-    async def get_whois(
+    async def get_live_whois(
+        self, *, api_key: str, domain_name: str, whois: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> AsyncHttpResponse[WhoisResponse]:
+        """
+        Get live WHOIS information for a domain
+
+        Parameters
+        ----------
+        api_key : str
+
+        domain_name : str
+
+        whois : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        AsyncHttpResponse[WhoisResponse]
+        """
+        _response = await self._client_wrapper.httpx_client.request(
+            "whois",
+            method="GET",
+            params={
+                "apiKey": api_key,
+                "domainName": domain_name,
+                "whois": whois,
+            },
+            request_options=request_options,
+        )
+        try:
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(headers=dict(_response.headers), status_code=_response.status_code, body=_response.text)
+        if 200 <= _response.status_code < 300:
+            _data = typing.cast(
+                WhoisResponse,
+                parse_obj_as(
+                    type_=WhoisResponse,  # type: ignore
+                    object_=_response_json,
+                ),
+            )
+            return AsyncHttpResponse(response=_response, data=_data)
+        raise ApiError(headers=dict(_response.headers), status_code=_response.status_code, body=_response_json)
+
+    async def get_historical_whois(
+        self,
+        *,
+        api_key: str,
+        domain_name: str,
+        whois: str,
+        page: typing.Optional[str] = None,
+        format: typing.Optional[str] = None,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> AsyncHttpResponse[WhoisResponse]:
+        """
+        Get historical WHOIS records for a domain
+
+        Parameters
+        ----------
+        api_key : str
+
+        domain_name : str
+
+        whois : str
+
+        page : typing.Optional[str]
+
+        format : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        AsyncHttpResponse[WhoisResponse]
+        """
+        _response = await self._client_wrapper.httpx_client.request(
+            "whois",
+            method="GET",
+            params={
+                "apiKey": api_key,
+                "domainName": domain_name,
+                "whois": whois,
+                "page": page,
+                "format": format,
+            },
+            request_options=request_options,
+        )
+        try:
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(headers=dict(_response.headers), status_code=_response.status_code, body=_response.text)
+        if 200 <= _response.status_code < 300:
+            _data = typing.cast(
+                WhoisResponse,
+                parse_obj_as(
+                    type_=WhoisResponse,  # type: ignore
+                    object_=_response_json,
+                ),
+            )
+            return AsyncHttpResponse(response=_response, data=_data)
+        raise ApiError(headers=dict(_response.headers), status_code=_response.status_code, body=_response_json)
+
+    async def get_reverse_whois(
         self,
         *,
         api_key: str,
         whois: str,
-        domain_name: typing.Optional[str] = None,
         keyword: typing.Optional[str] = None,
         email: typing.Optional[str] = None,
         owner: typing.Optional[str] = None,
@@ -287,15 +492,13 @@ class AsyncRawWhoisClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[WhoisResponse]:
         """
-        Get WHOIS information for a domain (live, historical or reverse)
+        Perform a reverse WHOIS lookup based on registrant information
 
         Parameters
         ----------
         api_key : str
 
         whois : str
-
-        domain_name : typing.Optional[str]
 
         keyword : typing.Optional[str]
 
@@ -327,7 +530,6 @@ class AsyncRawWhoisClient:
             method="GET",
             params={
                 "apiKey": api_key,
-                "domainName": domain_name,
                 "whois": whois,
                 "keyword": keyword,
                 "email": email,
@@ -342,18 +544,18 @@ class AsyncRawWhoisClient:
             request_options=request_options,
         )
         try:
-            if 200 <= _response.status_code < 300:
-                _data = typing.cast(
-                    WhoisResponse,
-                    parse_obj_as(
-                        type_=WhoisResponse,  # type: ignore
-                        object_=_response.json(),
-                    ),
-                )
-                return AsyncHttpResponse(response=_response, data=_data)
             _response_json = _response.json()
         except JSONDecodeError:
             raise ApiError(headers=dict(_response.headers), status_code=_response.status_code, body=_response.text)
+        if 200 <= _response.status_code < 300:
+            _data = typing.cast(
+                WhoisResponse,
+                parse_obj_as(
+                    type_=WhoisResponse,  # type: ignore
+                    object_=_response_json,
+                ),
+            )
+            return AsyncHttpResponse(response=_response, data=_data)
         raise ApiError(headers=dict(_response.headers), status_code=_response.status_code, body=_response_json)
 
     async def get_ip_whois(
@@ -393,18 +595,18 @@ class AsyncRawWhoisClient:
             request_options=request_options,
         )
         try:
-            if 200 <= _response.status_code < 300:
-                _data = typing.cast(
-                    IpWhoisResponse,
-                    parse_obj_as(
-                        type_=IpWhoisResponse,  # type: ignore
-                        object_=_response.json(),
-                    ),
-                )
-                return AsyncHttpResponse(response=_response, data=_data)
             _response_json = _response.json()
         except JSONDecodeError:
             raise ApiError(headers=dict(_response.headers), status_code=_response.status_code, body=_response.text)
+        if 200 <= _response.status_code < 300:
+            _data = typing.cast(
+                IpWhoisResponse,
+                parse_obj_as(
+                    type_=IpWhoisResponse,  # type: ignore
+                    object_=_response_json,
+                ),
+            )
+            return AsyncHttpResponse(response=_response, data=_data)
         raise ApiError(headers=dict(_response.headers), status_code=_response.status_code, body=_response_json)
 
     async def get_asn_whois(
@@ -444,18 +646,18 @@ class AsyncRawWhoisClient:
             request_options=request_options,
         )
         try:
-            if 200 <= _response.status_code < 300:
-                _data = typing.cast(
-                    AsnWhoisResponse,
-                    parse_obj_as(
-                        type_=AsnWhoisResponse,  # type: ignore
-                        object_=_response.json(),
-                    ),
-                )
-                return AsyncHttpResponse(response=_response, data=_data)
             _response_json = _response.json()
         except JSONDecodeError:
             raise ApiError(headers=dict(_response.headers), status_code=_response.status_code, body=_response.text)
+        if 200 <= _response.status_code < 300:
+            _data = typing.cast(
+                AsnWhoisResponse,
+                parse_obj_as(
+                    type_=AsnWhoisResponse,  # type: ignore
+                    object_=_response_json,
+                ),
+            )
+            return AsyncHttpResponse(response=_response, data=_data)
         raise ApiError(headers=dict(_response.headers), status_code=_response.status_code, body=_response_json)
 
     async def get_bulk_whois(
@@ -498,16 +700,16 @@ class AsyncRawWhoisClient:
             omit=OMIT,
         )
         try:
-            if 200 <= _response.status_code < 300:
-                _data = typing.cast(
-                    BulkWhoisResponse,
-                    parse_obj_as(
-                        type_=BulkWhoisResponse,  # type: ignore
-                        object_=_response.json(),
-                    ),
-                )
-                return AsyncHttpResponse(response=_response, data=_data)
             _response_json = _response.json()
         except JSONDecodeError:
             raise ApiError(headers=dict(_response.headers), status_code=_response.status_code, body=_response.text)
+        if 200 <= _response.status_code < 300:
+            _data = typing.cast(
+                BulkWhoisResponse,
+                parse_obj_as(
+                    type_=BulkWhoisResponse,  # type: ignore
+                    object_=_response_json,
+                ),
+            )
+            return AsyncHttpResponse(response=_response, data=_data)
         raise ApiError(headers=dict(_response.headers), status_code=_response.status_code, body=_response_json)

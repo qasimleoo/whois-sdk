@@ -4,6 +4,7 @@ import typing
 
 import httpx
 from .core.client_wrapper import AsyncClientWrapper, SyncClientWrapper
+from .dns.client import AsyncDnsClient, DnsClient
 from .environment import WhoisfreaksApiEnvironment
 from .whois.client import AsyncWhoisClient, WhoisClient
 
@@ -57,6 +58,7 @@ class WhoisfreaksApi:
             else httpx.Client(timeout=_defaulted_timeout),
             timeout=_defaulted_timeout,
         )
+        self.dns = DnsClient(client_wrapper=self._client_wrapper)
         self.whois = WhoisClient(client_wrapper=self._client_wrapper)
 
 
@@ -109,6 +111,7 @@ class AsyncWhoisfreaksApi:
             else httpx.AsyncClient(timeout=_defaulted_timeout),
             timeout=_defaulted_timeout,
         )
+        self.dns = AsyncDnsClient(client_wrapper=self._client_wrapper)
         self.whois = AsyncWhoisClient(client_wrapper=self._client_wrapper)
 
 

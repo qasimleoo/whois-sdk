@@ -2,8 +2,9 @@
 
 # isort: skip_file
 
-from . import whois
+from . import dns, whois
 from .client import AsyncWhoisfreaksApi, WhoisfreaksApi
+from .dns import DnsLiveResponse, DnsRecord
 from .environment import WhoisfreaksApiEnvironment
 from .version import __version__
 from .whois import (
@@ -37,6 +38,8 @@ __all__ = [
     "BulkWhoisRecord",
     "BulkWhoisResponse",
     "Contact",
+    "DnsLiveResponse",
+    "DnsRecord",
     "DomainRegistrar",
     "HistoricalRecord",
     "InetNum",
@@ -50,5 +53,6 @@ __all__ = [
     "WhoisfreaksApi",
     "WhoisfreaksApiEnvironment",
     "__version__",
+    "dns",
     "whois",
 ]

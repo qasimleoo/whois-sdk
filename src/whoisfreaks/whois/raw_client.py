@@ -43,7 +43,7 @@ class RawWhoisClient:
         HttpResponse[WhoisResponse]
         """
         _response = self._client_wrapper.httpx_client.request(
-            "whois",
+            "v1.0/whois",
             method="GET",
             params={
                 "apiKey": api_key,
@@ -100,7 +100,7 @@ class RawWhoisClient:
         HttpResponse[WhoisResponse]
         """
         _response = self._client_wrapper.httpx_client.request(
-            "whois",
+            "v1.0/whois",
             method="GET",
             params={
                 "apiKey": api_key,
@@ -177,7 +177,7 @@ class RawWhoisClient:
         HttpResponse[WhoisResponse]
         """
         _response = self._client_wrapper.httpx_client.request(
-            "whois",
+            "v1.0/whois",
             method="GET",
             params={
                 "apiKey": api_key,
@@ -236,7 +236,7 @@ class RawWhoisClient:
         HttpResponse[IpWhoisResponse]
         """
         _response = self._client_wrapper.httpx_client.request(
-            "ip-whois",
+            "v1.0/ip-whois",
             method="GET",
             params={
                 "apiKey": api_key,
@@ -287,7 +287,7 @@ class RawWhoisClient:
         HttpResponse[AsnWhoisResponse]
         """
         _response = self._client_wrapper.httpx_client.request(
-            "asn-whois",
+            "v1.0/asn-whois",
             method="GET",
             params={
                 "apiKey": api_key,
@@ -338,7 +338,7 @@ class RawWhoisClient:
         HttpResponse[BulkWhoisResponse]
         """
         _response = self._client_wrapper.httpx_client.request(
-            "bulkwhois",
+            "v1.0/bulkwhois",
             method="POST",
             params={
                 "apiKey": api_key,
@@ -392,7 +392,7 @@ class AsyncRawWhoisClient:
         AsyncHttpResponse[WhoisResponse]
         """
         _response = await self._client_wrapper.httpx_client.request(
-            "whois",
+            "v1.0/whois",
             method="GET",
             params={
                 "apiKey": api_key,
@@ -449,7 +449,7 @@ class AsyncRawWhoisClient:
         AsyncHttpResponse[WhoisResponse]
         """
         _response = await self._client_wrapper.httpx_client.request(
-            "whois",
+            "v1.0/whois",
             method="GET",
             params={
                 "apiKey": api_key,
@@ -526,7 +526,7 @@ class AsyncRawWhoisClient:
         AsyncHttpResponse[WhoisResponse]
         """
         _response = await self._client_wrapper.httpx_client.request(
-            "whois",
+            "v1.0/whois",
             method="GET",
             params={
                 "apiKey": api_key,
@@ -585,7 +585,7 @@ class AsyncRawWhoisClient:
         AsyncHttpResponse[IpWhoisResponse]
         """
         _response = await self._client_wrapper.httpx_client.request(
-            "ip-whois",
+            "v1.0/ip-whois",
             method="GET",
             params={
                 "apiKey": api_key,
@@ -636,7 +636,7 @@ class AsyncRawWhoisClient:
         AsyncHttpResponse[AsnWhoisResponse]
         """
         _response = await self._client_wrapper.httpx_client.request(
-            "asn-whois",
+            "v1.0/asn-whois",
             method="GET",
             params={
                 "apiKey": api_key,
@@ -687,7 +687,7 @@ class AsyncRawWhoisClient:
         AsyncHttpResponse[BulkWhoisResponse]
         """
         _response = await self._client_wrapper.httpx_client.request(
-            "bulkwhois",
+            "v1.0/bulkwhois",
             method="POST",
             params={
                 "apiKey": api_key,

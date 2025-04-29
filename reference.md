@@ -1,4 +1,95 @@
 # Reference
+## Dns
+<details><summary><code>client.dns.<a href="src/whoisfreaks/dns/client.py">live_dns_lookup</a>(...)</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Get Live DNS information for a domain or an IP address
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from whoisfreaks import WhoisfreaksApi
+from whoisfreaks.environment import WhoisfreaksApiEnvironment
+client = WhoisfreaksApi(environment=WhoisfreaksApiEnvironment.PRODUCTION, )
+client.dns.live_dns_lookup(api_key='YOUR_API_KEY', domain_name='google.com', type='all', )
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**api_key:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**domain_name:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**ip_address:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**type:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## Whois
 <details><summary><code>client.whois.<a href="src/whoisfreaks/whois/client.py">get_live_whois</a>(...)</code></summary>
 <dl>
